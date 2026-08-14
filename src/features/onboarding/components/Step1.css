@@ -95,7 +95,6 @@
 
 /* 4. 하단 고지사항 및 버튼 */
 .step1-footer {
-  margin-top: auto;
   display: flex;
   flex-direction: column;
   gap: 12px;
