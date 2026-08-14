@@ -1,0 +1,226 @@
+/* 전체 레이아웃 (높이 100vh 고정, 스크롤 분리) */
+.home-page-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 440px;
+  height: 100vh;
+  margin: 0 auto;
+  background-color: #ffffff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* 본문 스크롤 영역 (스크롤바 숨김) */
+.home-page-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE / Edge */
+}
+
+.home-page-content::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+/* 상단 인사 타이틀 */
+.home-greeting-title {
+  margin: 0 0 16px 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1F2937;
+  line-height: 1.35;
+}
+
+/* 카드 공통 및 섹션 구분 */
+.dashboard-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.section-heading {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1F2937;
+}
+
+/* 1. 오늘의 안부 상태 카드 */
+.status-card {
+  padding: 12px;
+  background-color: #F9FAFB;
+  border-radius: 6px;
+  border: 1px solid #E5E7EB;
+  margin-bottom: 16px;
+}
+
+.card-header-title {
+  margin: 0 0 16px 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.status-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.status-label {
+  font-size: 11px;
+  color: #1F2937;
+}
+
+.status-value {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1F2937;
+  white-space: nowrap;
+}
+
+.status-time-text {
+  font-size: 11px;
+  color: #64748b;
+}
+
+/* 2. 건강 기록 카드 */
+.record-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  background-color: #F9FAFB;
+  border-radius: 6px;
+  border: 1px solid #E5E7EB;
+  margin-bottom: 16px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.record-card:hover {
+  background-color: #f1f5f9;
+}
+
+.record-card-title {
+  margin: 0 0 4px 0;
+  font-size: 12px;
+  color: #1F2937;
+}
+
+.record-card-desc {
+  margin: 0;
+  font-size: 11px;
+  color: #64748b;
+}
+
+.link-text-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: 14px;
+  color: #6B7280;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* 3. 생활 습관 피드백 카드 */
+.feedback-card {
+  padding: 18px 16px;
+  background-color: #F9FAFB;
+  border-radius: 6px;
+  border: 1px solid #E5E7EB;
+  margin-bottom: 16px;
+}
+
+.feedback-card-title {
+  margin: 0 0 10px 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.feedback-paragraph {
+  margin: 0 0 10px 0;
+  font-size: 13px;
+  color: #334155;
+  line-height: 1.5;
+}
+
+.feedback-sub-notice {
+  display: block;
+  font-size: 11px;
+  color: #94a3b8;
+  margin-bottom: 12px;
+}
+
+.feedback-link-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: 13px;
+  color: #334155;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* 4. AI 안부 전화 카드 */
+.call-info-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px;
+  background-color: #F9FAFB;
+  border-radius: 6px;
+  border: 1px solid #E5E7EB;
+  margin-bottom: 16px;
+}
+
+.call-info-title {
+  margin: 0 0 4px 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.call-info-desc {
+  margin: 0;
+  font-size: 12px;
+  color: #64748b;
+}
+
+/* 5. 바로가기 칩 영역 */
+.shortcut-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.shortcut-chip-btn {
+  padding: 6px 12px;
+  background-color: #F3F4F6;
+  border: 1px solid #E5E7EB;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1F2937;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.shortcut-chip-btn:hover {
+  background-color: #e2e8f0;
+}
