@@ -28,7 +28,7 @@
 }
 
 /* Firefox, IE, Edge 스크롤바 숨기기 */
-.onboarding-page-content {
+.onboarding-content {
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE and Edge */
 }
