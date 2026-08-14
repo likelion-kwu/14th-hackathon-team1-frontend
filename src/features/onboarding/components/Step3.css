@@ -1,0 +1,96 @@
+/* 전체 컨테이너 */
+.step3-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 24px;
+}
+
+/* 1. 상단 타이틀 영역 */
+.step3-title-group {
+  margin-bottom: 24px;
+}
+
+.step3-main-title {
+  margin: 0 0 6px 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.step3-sub-title {
+  margin: 0;
+  font-size: 13px;
+  color: #64748b;
+}
+
+/* 2. 폼 영역 */
+.step3-form {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.input-field-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.input-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 8px;
+}
+
+.phone-input {
+  height: 48px;
+  padding: 0 16px;
+  border-radius: 4px;
+  border: 1px solid #D1D5DB;
+  font-size: 15px;
+  color: #0f172a;
+  outline: none;
+  transition: border-color 0.15s ease;
+  box-sizing: border-box;
+}
+
+.phone-input:focus {
+  border-color: #1e293b;
+}
+
+.input-example {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+/* 3. 안내 카드 */
+.step3-info-card {
+  padding: 16px;
+  background-color: #f8fafc;
+  border-radius: 6px;
+  border: 1px solid #E5E7EB;
+}
+
+.info-card-header {
+  margin: 0 0 6px 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: #334155;
+}
+
+.info-card-text {
+  margin: 0;
+  font-size: 12px;
+  color: #64748b;
+  line-height: 1.45;
+}
+
+/* 4. 하단 버튼 영역 */
+.step3-footer {
+  padding-top: 16px;
+}

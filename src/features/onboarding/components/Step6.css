@@ -1,0 +1,211 @@
+/* 전체 컨테이너 */
+.step6-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 24px;
+}
+
+/* 1. 상단 타이틀 영역 */
+.step6-title-group {
+  margin-bottom: 20px;
+}
+
+.step6-main-title {
+  margin: 0 0 6px 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.step6-sub-title {
+  margin: 0;
+  font-size: 12px;
+  color: #64748b;
+  line-height: 1.45;
+}
+
+/* 2. 섹션 카드 공통 */
+.setting-section-card {
+  padding: 12px;
+  background-color: #F9FAFB;
+  border-radius: 6px;
+  border: 1px solid #E5E7EB;
+  margin-bottom: 16px;
+}
+
+.setting-section-title {
+  margin: 0 0 14px 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* Select Box 영역 */
+.select-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.select-field-group:last-of-type {
+  margin-bottom: 0;
+}
+
+.select-label {
+  font-size: 13px;
+  color: #334155;
+}
+
+.setting-select {
+  height: 46px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1px solid #D1D5DB;
+  background-color: #ffffff;
+  font-size: 14px;
+  color: #9CA3AF;
+  outline: none;
+  cursor: pointer;
+}
+
+.setting-select:focus {
+  border-color: #1e293b;
+}
+
+.setting-card-notice {
+  margin: 10px 0 0 0;
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+/* 건강 항목 체크박스 */
+.category-checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.setting-checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: #1e293b;
+  cursor: pointer;
+}
+
+.checkbox-text {
+  font-size: 14px;
+  color: #1e293b;
+}
+
+/* 토글 스위치 */
+.setting-section-card-toggle {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background-color: #F9FAFB;
+  border-radius: 6px;
+  border: 1px solid #E5E7EB;
+  margin-bottom: 16px;
+}
+.toggle-item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.toggle-label {
+  font-size: 14px;
+  color: #1F2937;
+}
+
+/* Switch UI CSS */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #cbd5e1;
+  transition: 0.2s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.2s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #1e293b;
+}
+
+input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+/* 경고 박스 */
+.step6-warning-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 14px;
+  background-color: #F9FAFB;
+  border-radius: 6px;
+  border: 1px solid #E5E7EB;
+}
+
+.warning-box-icon {
+  font-size: 14px;
+  margin-top: 2px;
+}
+
+.warning-box-text {
+  margin: 0;
+  font-size: 11px;
+  color: #64748b;
+  line-height: 1.45;
+}
+
+/* 하단 버튼 영역 */
+.step6-footer {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding-top: 16px;
+}

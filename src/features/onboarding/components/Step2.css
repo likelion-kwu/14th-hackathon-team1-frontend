@@ -1,0 +1,153 @@
+/* 전체 컨테이너 */
+.step2-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 24px;
+  
+}
+
+/* 1. 상단 타이틀 영역 */
+.step2-title-group {
+  margin-bottom: 16px;
+}
+
+.step2-main-title {
+  margin: 0 0 16px 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.step2-sub-title {
+  margin: 0;
+  font-size: 13px;
+  color: #1F2937;
+}
+
+/* 2. '이렇게 동작해요' 섹션 카드 */
+.step2-section-card {
+  padding: 12px;
+  background-color: #F9FAFB;
+  border-radius: 6px;
+  border: 1px solid #E5E7EB;
+  margin-bottom: 16px;
+}
+
+.section-card-title {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1F2937;
+}
+
+.step-item-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.step-item {
+  padding: 14px 16px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #f1f5f9;
+}
+
+.step-item-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.step-number {
+  font-size: 12px;
+  color: #334155;
+  font-weight: 600;
+}
+
+.step-item-title {
+  margin: 0;
+  font-size: 12px;
+  font-weight: normal;
+  color: #1e293b;
+}
+
+.step-item-desc {
+  margin: 0;
+  font-size: 11px;
+  color: #64748b;
+  line-height: 1.45;
+}
+
+/* 3. 개인정보 및 동의 안내 카드 */
+.step2-info-card {
+  padding: 12px;
+  gap: 12px;
+  background-color: #F9FAFB;
+  border-radius: 6px;
+  border: 1px solid #E5E7EB;
+  margin-bottom: 16px;
+}
+
+.info-card-title {
+  margin: 0 0 8px 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.info-card-detail {
+  margin-bottom: 8px;
+  font-size: 12px;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+/* 4. 경고 안내 카드 */
+.step2-warning-card {
+  padding: 14px 16px;
+  background-color: #f8fafc;
+  border-radius: 14px;
+  border: 1px solid #f1f5f9;
+  margin-bottom: 24px;
+}
+
+.warning-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.warning-icon {
+  font-size: 12px;
+}
+
+.warning-text-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.warning-title {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 400;
+  color: #1F2937;
+}
+
+.warning-desc {
+  margin-top: 12px;
+  font-size: 11px;
+  font-weight: 400;
+  color: #1F2937;
+}
+
+/* 5. 하단 버튼 영역 */
+.step2-footer {
+  margin-top: auto;
+  padding-top: 16px;
+}

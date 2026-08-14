@@ -1,0 +1,106 @@
+/* 전체 컨테이너 */
+.step4-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 24px;
+}
+
+/* 1. 상단 타이틀 영역 */
+.step4-title-group {
+  margin-bottom: 24px;
+}
+
+.step4-main-title {
+  margin: 0 0 6px 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.step4-sub-title {
+  margin: 0;
+  font-size: 13px;
+  color: #64748b;
+}
+
+/* 2. 폼 영역 */
+.step4-form {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* 인증 코드 입력 카드 */
+.verify-card {
+  padding: 18px 16px;
+  background-color: #f8fafc;
+  border-radius: 6px;
+  border: 1px solid #f1f5f9;
+  margin-bottom: 16px;
+}
+
+.verify-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 10px;
+}
+
+.verify-input {
+  width: 100%;
+  height: 48px;
+  padding: 0 16px;
+  border-radius: 4px;
+  border: 1px solid #cbd5e1;
+  font-size: 15px;
+  color: #0f172a;
+  outline: none;
+  background-color: #ffffff;
+  transition: border-color 0.15s ease;
+  box-sizing: border-box;
+}
+
+.verify-input:focus {
+  border-color: #1e293b;
+}
+
+.timer-text {
+  margin: 10px 0 0 0;
+  font-size: 12px;
+  color: #64748b;
+}
+
+.timer-text.expired {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+/* 재발신 안내 카드 */
+.resend-card {
+  padding: 16px;
+  background-color: #f8fafc;
+  border-radius: 6px;
+  border: 1px solid #E5E7EB;
+  margin-bottom: 16px;
+}
+
+.resend-text {
+  margin: 0 0 10px 0;
+  font-size: 12px;
+  color: #1F2937;
+}
+
+.resend-btn {
+  border-color: #1F2937;
+}
+
+/* 3. 하단 버튼 영역 */
+.step4-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

@@ -1,0 +1,142 @@
+/* 전체 컨테이너 */
+.step5-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 24px;
+}
+
+/* 1. 상단 타이틀 영역 */
+.step5-title-group {
+  margin-bottom: 16px;
+}
+
+.step5-main-title {
+  margin: 0 0 6px 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1F2937;
+}
+
+.step5-sub-title {
+  margin: 0px;
+  font-size: 12px;
+  color: #64748b;
+  line-height: 1.45;
+}
+
+/* 2. 섹션 공통 타이틀 */
+.section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1F2937;
+}
+
+/* 수집 목적 안내 카드 그룹 */
+.info-guide-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.guide-card {
+  padding: 12px;
+  background-color: #F9FAFB;
+  border-radius: 6px;
+  border: 1px solid #E5E7EB;
+}
+
+.guide-card-label {
+  margin: 0 0 12px 0;
+  font-size: 12px;
+  font-weight: 500;
+  color: #1F2937;
+}
+
+.guide-card-content {
+  margin: 0;
+  font-size: 11px;
+  color: #1F2937;
+}
+
+/* 3. 체크박스 섹션 */
+.terms-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.term-checkbox-card {
+  padding: 12px;
+  background-color: #f8fafc;
+  border-radius: 6px;
+  border: 1px solid #E5E7EB;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.term-checkbox-card:hover {
+  background-color: #f1f5f9;
+}
+
+.checkbox-header {
+  display: flex;
+  align-items: center;
+  gap: 0px 8px;
+  margin-bottom: 12px;
+}
+
+.term-checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: #1e293b;
+  cursor: pointer;
+}
+
+.checkbox-label {
+  font-size: 14px;
+  color: #1F2937;
+  cursor: pointer;
+}
+
+.checkbox-desc {
+  margin: 0px;
+  font-size: 11px;
+  color: #1F2937;
+  line-height: 1.4;
+}
+
+.terms-footer-notice {
+  margin: 0px;
+  font-size: 11px;
+  color: #94a3b8;
+  line-height: 1.4;
+}
+
+/* 4. 하단 버튼 영역 */
+.step5-footer {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding-top: 16px;
+}
+
+.text-link-btn {
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  color: #6B7280;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.text-link-btn:hover {
+  color: #0f172a;
+}
