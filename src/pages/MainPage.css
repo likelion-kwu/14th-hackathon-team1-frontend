@@ -1,0 +1,27 @@
+/* 메인 뷰포트 레이아웃 */
+.main-page-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 440px;
+  height: 100vh;
+  margin: 0 auto;
+  background-color: #ffffff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* 각 탭 페이지들이 들어갈 영역 */
+.main-tab-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  box-sizing: border-box;
+  
+}
+
+.main-tab-content::-webkit-scrollbar {
+  display: none;
+}
