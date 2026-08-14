@@ -1,0 +1,75 @@
+/* 공통 기본 버튼 */
+.common-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+  box-sizing: border-box;
+}
+
+.btn-full {
+  width: fit-content;
+}
+
+.btn-auto {
+  width: auto;
+}
+
+/* 검정색 버튼 */
+.btn-black {
+  background-color: #1F2937;
+  color: #ffffff;
+  border: 1px solid transparent;
+}
+
+.btn-black:hover:not(.btn-disabled) {
+  background-color: #0f172a;
+}
+
+.btn-black:active:not(.btn-disabled) {
+  transform: scale(0.98);
+}
+
+/* 흰색 버튼 */
+.btn-white {
+  background-color: #ffffff;
+  color: #1F2937;
+  border: 1px solid #1F2937;
+}
+
+.btn-white:hover:not(.btn-disabled) {
+  background-color: #f8fafc;
+  border-color: #1F2937;
+}
+
+.btn-white:active:not(.btn-disabled) {
+  transform: scale(0.98);
+}
+
+/* 빨간색 버튼 */
+.btn-red {
+  background-color: #dc2626;
+  color: #ffffff;
+  border: 1px solid transparent;
+}
+
+.btn-red:hover:not(.btn-disabled) {
+  background-color: #b91c1c;
+}
+
+.btn-red:active:not(.btn-disabled) {
+  transform: scale(0.98);
+}
+
+/* 비활성화 */
+.btn-disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}

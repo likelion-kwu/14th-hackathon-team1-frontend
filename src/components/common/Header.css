@@ -1,0 +1,44 @@
+.common-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 56px;
+  padding: 0 16px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #f1f5f9;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.header-back-btn {
+  position: absolute;
+  left: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-size: 18px;
+  font-weight: 500;
+  color: #334155;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.15s ease;
+}
+
+.header-back-btn:hover {
+  background-color: #f1f5f9;
+}
+
+.header-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: #1F2937;
+  text-align: center;
+}
