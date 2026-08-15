@@ -1,0 +1,213 @@
+.weekly-page-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 440px;
+  height: 100vh;
+  margin: 0 auto;
+  background-color: #ffffff;
+  box-sizing: border-box;
+}
+
+.weekly-page-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+}
+
+.weekly-page-content::-webkit-scrollbar {
+  display: none;
+}
+
+.weekly-section {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.weekly-main-title {
+  margin: 0 0 16px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1F2937;
+}
+
+.section-title {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* 1. 주간 요약 카드 */
+.insight-card {
+  padding: 16px;
+  background-color: #F9FAFB;
+  border-radius: 6px;
+  border: 1px solid #E5E7EB;
+}
+
+.insight-title {
+  margin: 0 0 12px 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: #1F2937;
+}
+
+.insight-summary {
+  margin: 0 0 12px 0;
+  font-size: 11px;
+  color: #1F2937;
+}
+
+.insight-notice {
+  display: block;
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+/* 2. 항목별 변화 추이 */
+.trend-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.trend-card {
+  padding: 16px;
+  background-color: #F9FAFB;
+  border-radius: 6px;
+  border: 1px solid #E5E7EB;
+}
+
+.trend-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.trend-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #1F2937;
+}
+
+.trend-stat {
+  font-size: 12px;
+  color: #1F2937;
+}
+
+.trend-chart-box {
+  width: 100%;
+  height: 90px;
+  background-color: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chart-placeholder {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+/* 3. 근거 기록 */
+.evidence-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.evidence-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 12px;
+  background-color: #F9FAFB;
+  border-radius: 6px;
+  border: 1px solid #E5E7EB;
+}
+
+.evidence-text-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.evidence-title {
+  margin: 0;
+  font-size: 12px;
+  color: #1F2937;
+}
+
+.evidence-quote {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 400;
+  color: #1F2937;
+}
+
+.link-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: flex;
+
+  align-items: flex-start;
+  font-size: 14px;
+  color: #64748b;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* 4. 피드백 상세 */
+.feedback-box {
+  padding: 12px;
+  background-color: #F9FAFB;
+  border-radius: 6px;
+  border: 1px solid #E5E7EB;
+}
+
+.feedback-badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 500;
+  color: #1F2937;
+  margin-bottom: 8px;
+}
+
+.feedback-content {
+  margin: 0 0 8px 0;
+  font-size: 11px;
+  color: #1F2937;
+}
+
+.feedback-notice {
+  display: block;
+  font-size: 11px;
+  color: #94a3b8;
+  margin-bottom: 8px;
+}
+
+.feedback-btn-wrap {
+  width: fit-content;
+}
+
+.text-back-link {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: 14px;
+  color: #6B7280;
+  text-decoration: underline;
+  cursor: pointer;
+}
