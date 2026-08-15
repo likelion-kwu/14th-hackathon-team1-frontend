@@ -8,6 +8,8 @@ import { RecordPage } from './pages/RecordPage';
 import { CallPage } from './pages/CallPage';
 import { StreakPage } from './pages/StreakPage';
 import { SettingPage } from './pages/SettingPage';
+import { DailyHealthPage } from './features/health/DailyHealthPage';
+import { WeeklyHealthPage } from './features/health/WeeklyHealthPage';
 
 function App() {
   // 온보딩 완료 핸들러
@@ -45,6 +47,10 @@ function App() {
         <Route path="call" element={<CallPage userData={userProfile} />} />
         <Route path="streak" element={<StreakPage userData={userProfile} />} />
         <Route path="settings" element={<SettingPage userData={userProfile} />} />
+      
+        <Route path='/health/daily' element={<DailyHealthPage />} />
+        <Route path='/health/weekly' element={<WeeklyHealthPage />} />
+        
       </Route>
 
       {/* 기타 잘못된 접근 시 홈으로 이동 */}

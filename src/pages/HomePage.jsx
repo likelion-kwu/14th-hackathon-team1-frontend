@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './HomePage.css';
+import { useNavigate } from 'react-router-dom';
 
 /* 백엔드 API 미연결 시 사용할 임시 데이터 */
 const DEFAULT_DASHBOARD_DATA = {
@@ -16,13 +17,13 @@ const DEFAULT_DASHBOARD_DATA = {
       id: 'daily',
       title: '일간 기록',
       description: '오늘의 기록 확인',
-      destination: 'dailyRecords'
+      destination: '/health/daily'
     },
     {
       id: 'weekly',
       title: '주간 기록',
       description: '이번 주 건강 흐름 한눈에 보기',
-      destination: 'weeklyRecords'
+      destination: '/health/weekly'
     }
   ],
   weeklyFeedback: {
@@ -66,6 +67,8 @@ export const HomePage = ({
   const [data, setData] = useState(initialData || DEFAULT_DASHBOARD_DATA);
   const [isLoading, setIsLoading] = useState(!initialData);
   //const [activeTab, setActiveTab] = useState('home');
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     // 부모로부터 dashboardData가 들어오면 바로 상태 업데이트
@@ -157,7 +160,7 @@ export const HomePage = ({
             <div
               key={item.id}
               className="record-card"
-              onClick={() => onNavigate && onNavigate(item.destination)}
+              onClick={() => navigate(item.destination)}
               role="button"
               tabIndex={0}
             >
@@ -170,7 +173,7 @@ export const HomePage = ({
                 className="link-text-btn"
                 onClick={(e) => {
                   e.stopPropagation();
-                  onNavigate && onNavigate(item.destination);
+                  navigate(item.destination);
                 }}
               >
                 보기
