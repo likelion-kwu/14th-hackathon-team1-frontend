@@ -35,6 +35,10 @@ export const Step5 = ({
       save: nextState,
       share: nextState
     });
+
+    if (onSkipToHome) {
+      onSkipToHome();
+    }
   };
 
   // 필수 항목 3가지 동의 여부 검증
@@ -171,16 +175,16 @@ export const Step5 = ({
 
       {/* 5. 하단 버튼 영역 */}
       <div className="step5-footer">
-        <Button onClick={handleAllAgree&&onSkipToHome}>
+        <Button onClick={handleAllAgree}>
           모두 동의하고 시작하기
         </Button>
 
-        <Button variant="white" onClick={onNext}>
+        <Button variant="white" onClick={onNext} disabled={!isRequiredAgreed}>
           통화 설정으로 이동
         </Button>
 
         <button type="button" className="text-link-btn" onClick={onSkipToHome}>
-          홈_대시보드로 이동
+          홈 대시보드로 이동
         </button>
       </div>
     </div>

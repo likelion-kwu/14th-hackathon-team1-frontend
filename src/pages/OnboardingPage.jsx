@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Header } from "../components/common/Header";
+import { useNavigate } from "react-router-dom";
 
+import { Header } from "../components/common/Header";
 import { Step1 } from "../features/onboarding/components/Step1";
 import { Step2 } from "../features/onboarding/components/Step2";
 import { Step3 } from "../features/onboarding/components/Step3";
@@ -11,6 +12,7 @@ import { Step6 } from "../features/onboarding/components/Step6";
 import './OnboardingPage.css'
 
 export const OnboardingPage = ({ onComplete }) => { 
+  const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1); // 현재 온보딩 페이지
 
   const [formData, setFormData] = useState({
@@ -61,15 +63,22 @@ export const OnboardingPage = ({ onComplete }) => {
     }));
   };
 
-  // Step 6 최종 [설정 완료, 시작하기] 클릭 시 실행
+  // 온보딩 완료 후 상태 업데이트 및 홈(/) 이동 처리 공통 함수
+  const handleFinish = (data) => {
+    if (onComplete) {
+      onComplete(data);
+    }
+    // 온보딩 완료 후 홈으로 이동 (뒤로가기 방지를 위해 replace: true 적용)
+    navigate('/', { replace: true });
+  };
+
+  // [설정 완료, 시작하기] 클릭 시 실행
   const handleFinalSubmit = async () => {
     try {
       console.log('최종 온보딩 등록 데이터 백엔드 전송:', formData);
       // TODO: 백엔드 API 연동 (POST /api/users/init-settings)
       
-      if (onComplete) {
-        onComplete(formData);
-      }
+      handleFinish(formData);
     } catch (error) {
       console.error('설정 저장 에러:', error);
       alert('설정 저장 중 오류가 발생했습니다.');
@@ -126,7 +135,7 @@ export const OnboardingPage = ({ onComplete }) => {
                 agreements={formData.agreements}
                 onChangeAgreements={(val) => handleUpdateFormData('agreements', val)}
                 onNext={handleNextStep}
-                onSkipToHome={() => onComplete && onComplete()}
+                onSkipToHome={() => handleFinish(formData)}
             />
         )}
 

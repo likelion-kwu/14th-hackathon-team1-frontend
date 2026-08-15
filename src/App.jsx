@@ -2,6 +2,12 @@ import { useState } from 'react';
 import './App.css'
 import { OnboardingPage } from './pages/OnboardingPage'
 import { MainPage } from './pages/MainPage';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { HomePage } from './pages/HomePage';
+import { RecordPage } from './pages/RecordPage';
+import { CallPage } from './pages/CallPage';
+import { StreakPage } from './pages/StreakPage';
+import { SettingPage } from './pages/SettingPage';
 
 function App() {
   // 온보딩 완료 핸들러
@@ -16,14 +22,34 @@ function App() {
   };
 
   return (
-    <div>
-      {!isOnboardingCompleted ? (
-        /* 온보딩 페이지 실행 */
-        <OnboardingPage onComplete={handleOnboardingComplete} />
-      ) : (
-        <MainPage userData={userProfile} />
-      )}
-    </div>
+    <Routes>
+      {/* 온보딩 페이지 */}
+      <Route
+        path="/onboarding"
+        element={<OnboardingPage onComplete={handleOnboardingComplete} />}
+      />
+
+      {/* 대시보드 공통 레이아웃 */}
+      <Route
+        path="/"
+        element={
+          !isOnboardingCompleted ? (
+            <Navigate to="/onboarding" replace />
+          ) : (
+            <MainPage userData={userProfile} />
+          )
+        }
+      >
+        <Route index element={<HomePage userData={userProfile} />} />
+        <Route path="record" element={<RecordPage userData={userProfile} />} />
+        <Route path="call" element={<CallPage userData={userProfile} />} />
+        <Route path="streak" element={<StreakPage userData={userProfile} />} />
+        <Route path="settings" element={<SettingPage userData={userProfile} />} />
+      </Route>
+
+      {/* 기타 잘못된 접근 시 홈으로 이동 */}
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
   )
 }
 
