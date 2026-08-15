@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Header } from '../components/common/Header';
-//import { BottomNavBar } from '../components/layout/BottomNavBar'
 import './HomePage.css';
 
 /* 백엔드 API 미연결 시 사용할 임시 데이터 */
