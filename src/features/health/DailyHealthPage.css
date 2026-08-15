@@ -1,0 +1,239 @@
+.daily-page-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 440px;
+  height: 100vh;
+  margin: 0 auto;
+  background-color: #ffffff;
+  box-sizing: border-box;
+}
+
+.daily-page-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+}
+
+.daily-page-content::-webkit-scrollbar {
+  display: none;
+}
+
+.daily-title-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.daily-main-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1F2937;
+}
+
+.daily-date-text {
+  font-size: 11px;
+  color: #1F2937;
+}
+
+.card-sub-title {
+  margin: 0 0 12px 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: #1F2937;
+}
+
+.section-title {
+  font-size: 12px;
+  font-weight: 400;
+  color: #1F2937;
+}
+
+/* 1. 일간 요약 카드 */
+.daily-summary-card {
+  padding: 16px;
+  background-color: #F9FAFB;
+  border-radius: 6px;
+  border: 1px solid #E5E7EB;
+  margin-bottom: 16px;
+}
+
+.summary-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+  background-color: #F9FAFB;
+  border-radius: 6px;
+  border: 1px solid #E5E7EB;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+
+.summary-label {
+  color: #1F2937;
+}
+
+.summary-value {
+  color: #1F2937;
+}
+
+/* 2. 항목별 기록 */
+.daily-section {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+  padding: 12px;
+  background-color: #F9FAFB;
+  border-radius: 6px;
+  border: 1px solid #E5E7EB;
+}
+
+.category-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.category-item-card {
+  padding: 12px;
+  background-color: #F9FAFB;
+  border-radius: 6px;
+  border: 1px solid #E5E7EB;
+  display: flex;
+  flex-direction: column;
+}
+
+.category-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.category-icon-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.category-icon {
+  font-size: 12px;
+}
+
+.category-title {
+  font-size: 12px;
+  font-weight: 400;
+  color: #1F2937;
+}
+
+.category-value {
+  font-size: 12px;
+  font-weight: 400;
+  color: #1F2937;
+}
+
+.category-desc {
+  margin: 0 0 6px 0;
+  font-size: 11px;
+  color: #1F2937;
+}
+
+.category-source {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+/* 3. 대화 근거 카드 */
+.daily-section-card {
+  padding: 12px;
+  background-color: #F9FAFB;
+  border-radius: 6px;
+  border: 1px solid #E5E7EB;
+  margin-bottom: 16px;
+}
+
+.log-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.log-item-card {
+  padding: 12px;
+  border: 1px solid #E5E7EB;
+  border-radius: 6px;
+}
+
+.log-title {
+  margin: 0 0 12px 0;
+  font-size: 12px;
+  font-weight: 400;
+  color: #1F2937;
+}
+
+.log-extract {
+  font-size: 11px;
+  color: #1F2937;
+}
+
+.log-confidence {
+  font-size: 11px;
+  color: #1F2937;
+}
+
+/* 4. 확인 필요 항목 */
+.daily-warning-card {
+  padding: 12px;
+  background-color: #F9FAFB;
+  border-radius: 6px;
+  border: 1px solid #E5E7EB;
+  margin-bottom: 16px;
+}
+
+.warning-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.warning-icon {
+  font-size: 12px;
+  color: #1F2937;
+}
+
+.warning-title {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: #1F2937;
+}
+
+.warning-desc {
+  margin: 0 0 12px 0;
+  font-size: 11px;
+  color: #1F2937;
+}
+
+.warning-btn-wrap {
+  width: fit-content;
+}
+
+.daily-disclaimer {
+  text-align: center;
+  font-size: 11px;
+  color: #94a3b8;
+  line-height: 1.4;
+  margin-bottom: 24px;
+}
