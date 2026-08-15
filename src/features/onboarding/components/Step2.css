@@ -110,9 +110,9 @@
 /* 4. 경고 안내 카드 */
 .step2-warning-card {
   padding: 14px 16px;
-  background-color: #f8fafc;
-  border-radius: 14px;
-  border: 1px solid #f1f5f9;
+  background-color: #F9FAFB;
+  border-radius: 6px;
+  border: 1px solid #E5E7EB;
   margin-bottom: 24px;
 }
 
