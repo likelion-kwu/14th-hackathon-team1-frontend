@@ -29,7 +29,7 @@ const DEFAULT_DASHBOARD_DATA = {
   weeklyFeedback: {
     summary: '수면 시간이 평균보다 40분 늘었어요.\n식사 규칙성도 꾸준히 유지되고 있습니다.',
     notice: '이 피드백은 의료 진단이 아닙니다.',
-    detailDestination: 'feedbackDetail'
+    destination: '/feedbackDetail'
   },
   nextCall: {
     scheduledTime: '내일 오전 9:00 예정',
@@ -205,10 +205,11 @@ export const HomePage = ({
 
               <button
                 type="button"
-                className="feedback-link-btn"
-                onClick={() =>
-                  onNavigate && onNavigate(weeklyFeedback.detailDestination || 'feedbackDetail')
-                }
+                className="link-text-btn"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  navigate(weeklyFeedback.destination);
+                }}
               >
                 피드백 자세히 보기
               </button>

@@ -12,11 +12,12 @@ const PATH_TITLES = {
   '/streak': '소셜 및 스트릭',
   '/settings': '설정 및 데이터 관리',
   '/health/daily' : '일간 건강 기록',
-  '/health/weekly' : '주간 건강 기록'
+  '/health/weekly' : '주간 건강 기록',
+  '/feedbackDetail' : '생활 습관 피드백'
 };
 
 // 뒤로가기(<) 버튼을 표시할 경로 목록
-const SHOW_BACK_PATHS = ['/health/daily', '/health/weekly'];
+const SHOW_BACK_PATHS = ['/health/daily', '/health/weekly', '/feedbackDetail'];
 
 export const MainPage = () => {
   const location = useLocation();

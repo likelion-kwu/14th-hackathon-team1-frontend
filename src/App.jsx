@@ -10,6 +10,7 @@ import { StreakPage } from './pages/StreakPage';
 import { SettingPage } from './pages/SettingPage';
 import { DailyHealthPage } from './features/health/DailyHealthPage';
 import { WeeklyHealthPage } from './features/health/WeeklyHealthPage';
+import { FeedbackDetail } from './features/health/FeedbackDetail';
 
 function App() {
   // 온보딩 완료 핸들러
@@ -48,9 +49,9 @@ function App() {
         <Route path="streak" element={<StreakPage userData={userProfile} />} />
         <Route path="settings" element={<SettingPage userData={userProfile} />} />
       
-        <Route path='/health/daily' element={<DailyHealthPage />} />
-        <Route path='/health/weekly' element={<WeeklyHealthPage />} />
-        
+        <Route path='health/daily' element={<DailyHealthPage />} />
+        <Route path='health/weekly' element={<WeeklyHealthPage />} />
+        <Route path='feedbackDetail' element={<FeedbackDetail/>} />
       </Route>
 
       {/* 기타 잘못된 접근 시 홈으로 이동 */}
