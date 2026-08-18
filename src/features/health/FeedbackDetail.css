@@ -1,0 +1,210 @@
+.feedback-detail-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 440px;
+  min-height: 100%;
+  margin: 0 auto;
+  background-color: #ffffff;
+  box-sizing: border-box;
+}
+
+.feedback-detail-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+}
+
+.feedback-detail-content::-webkit-scrollbar {
+  display: none;
+}
+
+.feedback-loading-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  color: #64748b;
+  font-size: 14px;
+}
+
+/* 상단 타이틀 */
+.feedback-title-section {
+  margin-bottom: 16px;
+}
+
+.feedback-main-title {
+  margin: 0 0 16px 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1F2937;
+}
+
+.feedback-period-text {
+  margin: 0;
+  font-size: 13px;
+  color: #64748b;
+}
+
+/* 1. 주간 요약 카드 */
+.feedback-summary-card {
+  padding: 12px;
+  background-color: #F9FAFB;
+  border-radius: 6px;
+  border: 1px solid #E5E7EB;
+  margin-bottom: 16px;
+}
+
+.card-heading-title {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1F2937;
+}
+
+.summary-chip-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.summary-chip-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.summary-chip-label {
+  font-size: 12px;
+  color: #1F2937;
+}
+
+.summary-chip-badge {
+  padding: 6px 12px;
+  background-color: #F3F4F6;
+  border-radius: 999px;
+  border: 1px solid #E5E7EB;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1F2937;
+}
+
+.summary-footer-notice {
+  margin: 0;
+  font-size: 11px;
+  color: #64748b;
+}
+
+/* 2. 반복 패턴 · 변화 추이 */
+.feedback-pattern-section {
+  margin-bottom: 16px;
+}
+
+.section-heading-title {
+  margin: 0 0 16px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.pattern-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pattern-item-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  background-color: #F9FAFB;
+  border-radius: 6px;
+  border: 1px solid #E5E7EB;
+  gap: 11px;
+}
+
+.pattern-card-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.pattern-icon {
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.pattern-text-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.pattern-title {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 400;
+  color: #1F2937;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pattern-desc {
+  margin: 0;
+  font-size: 11px;
+  color: #64748b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.evidence-action-btn {
+  padding: 8px 16px;
+  background-color: #ffffff;
+  border: 1px solid #1F2937;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1F2937;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+}
+
+.evidence-action-btn:hover {
+  background-color: #f8fafc;
+  border-color: #94a3b8;
+}
+
+/* 3. AI 분석 안내 카드 */
+.ai-notice-card {
+  padding: 12px;
+  background-color: #F9FAFB;
+  border-radius: 6px;
+  border: 1px solid #E5E7EB;
+  margin-bottom: 24px;
+}
+
+.ai-notice-title {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1F2937;
+}
+
+.ai-notice-content {
+  margin: 0;
+  font-size: 11px;
+  color: #1F2937;
+}
