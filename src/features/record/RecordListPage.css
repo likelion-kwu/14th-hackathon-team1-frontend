@@ -1,0 +1,190 @@
+.record-list-page-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 440px;
+  min-height: 100%;
+  margin: 0 auto;
+  background-color: #ffffff;
+  box-sizing: border-box;
+}
+
+.record-list-page-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+}
+
+.record-list-page-content::-webkit-scrollbar {
+  display: none;
+}
+
+/* 상단 헤더 */
+.record-list-header {
+  margin-bottom: 16px;
+}
+
+.record-list-title {
+  margin: 0 0 16px 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.record-list-desc {
+  margin: 0;
+  font-size: 11px;
+  color: #64748b;
+}
+
+/* 필터 영역 */
+.record-filter-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.filter-select-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.filter-label {
+  font-size: 14px;
+  font-weight: 400;
+  color: #1F2937;
+}
+
+.filter-select {
+  height: 44px;
+  padding: 0 12px;
+  border-radius: 4px;
+  border: 1px solid #D1D5DB;
+  background-color: #FFFFFF;
+  font-size: 14px;
+  color: #9CA3AF;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px;
+}
+
+.filter-select:focus {
+  border-color: #1F2937;
+  color: #1F2937;
+}
+
+/* 카드 목록 */
+.auto-record-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.auto-record-card {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  background-color: #F9FAFB;
+  border-radius: 6px;
+  border: 1px solid #E5E7EB;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.auto-record-card:hover {
+  background-color: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.card-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.card-category {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1F2937;
+}
+
+/* 확신도 뱃지 스타일 */
+.confidence-badge {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid #E5E7EB;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.badge-warning {
+  background-color: #fac9c5;
+  color: #334155;
+  font-weight: 700;
+}
+
+.badge-high {
+  background-color: #f1f5f9;
+  color: #1F2937;
+}
+
+.badge-medium {
+  background-color: #f1f5f9;
+  color: #1F2937;
+}
+
+.badge-low {
+  background-color: #f1f5f9;
+  color: #1F2937;
+}
+
+.card-bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-summary {
+  margin: 0;
+  font-size: 12px;
+  color: #64748b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 250px;
+}
+
+.card-date {
+  font-size: 11px;
+  color: #94a3b8;
+  flex-shrink: 0;
+}
+
+.empty-record-box {
+  padding: 30px 0;
+  text-align: center;
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+/* 하단 면책 문구 */
+.record-list-disclaimer {
+  text-align: center;
+  font-size: 11px;
+  color: #1F2937;
+  line-height: 1.4;
+  margin-top: auto;
+  padding-bottom: 24px;
+}
