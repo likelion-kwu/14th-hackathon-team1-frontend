@@ -14,6 +14,7 @@ import { FeedbackDetail } from './features/health/FeedbackDetail';
 import { RecordListPage } from './features/record/RecordListPage';
 import { RecordDetailPage } from './features/record/RecordDetailPage';
 import { CallTimeSettingPage } from './features/settings/CallTimeSettingPage';
+import { PhoneSettingPage } from './features/settings/PhoneSettingPage';
 
 function App() {
   // 온보딩 완료 핸들러
@@ -26,6 +27,10 @@ function App() {
     setUserProfile(completedData);
     setIsOnboardingCompleted(true);
   };
+
+  const handleUpdateUserData = (updatedData) => {
+    setUserProfile(updatedData);
+  }
 
   return (
     <Routes>
@@ -42,7 +47,7 @@ function App() {
           !isOnboardingCompleted ? (
             <Navigate to="/onboarding" replace />
           ) : (
-            <MainPage userData={userProfile} />
+            <MainPage userData={userProfile} onUpdateUserData={handleUpdateUserData} />
           )
         }
       >
@@ -60,6 +65,7 @@ function App() {
         <Route path='record/detail' element={<RecordDetailPage/>} />
       
         <Route path='settings/call-time' element={<CallTimeSettingPage/>} />
+        <Route path='settings/phone' element={<PhoneSettingPage/>} />
       </Route>
 
       {/* 기타 잘못된 접근 시 홈으로 이동 */}

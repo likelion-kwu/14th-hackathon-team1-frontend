@@ -18,17 +18,18 @@ const PATH_TITLES = {
   '/call': '통화 진행 화면',
   '/streak': '소셜 및 스트릭',
   '/settings': '설정 및 데이터 관리',
-  '/settings/call-time': '통화 시간 변경'
+  '/settings/call-time': '통화 시간 변경',
+  '/settings/phone': '전화번호 변경'
 };
 
 // 뒤로가기(<) 버튼을 표시할 경로 목록
 const SHOW_BACK_PATHS = [
   '/health/daily', '/health/weekly', '/feedbackDetail',
   '/record/list', '/record/detail',
-  '/settings/call-time'
+  '/settings/call-time', '/settings/phone'
 ];
 
-export const MainPage = () => {
+export const MainPage = ({ userData, onUpdateUserData }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -48,7 +49,7 @@ export const MainPage = () => {
       <Header title={currentTitle} showBack={isBackVisible} onBack={handleBack} />
       
       <div className="main-tab-content">
-        <Outlet />
+        <Outlet context={{ userData, onUpdateUserData }} />
       </div>
 
       <BottomNavBar
