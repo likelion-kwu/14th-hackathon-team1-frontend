@@ -1,0 +1,49 @@
+.missed-call-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.missed-call-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  padding: 12px;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.missed-call-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.missed-call-time {
+  margin: 0;
+  font-size: 11px;
+  color: #1f2937;
+}
+
+.missed-call-question {
+  margin: 0;
+  font-size: 12px;
+  color: #1f2937;
+}
+
+.missed-call-note {
+  margin: 0;
+  font-size: 11px;
+  color: #1f2937;
+}
+
+.missed-call-content .common-btn {
+  width: 100%;
+}
