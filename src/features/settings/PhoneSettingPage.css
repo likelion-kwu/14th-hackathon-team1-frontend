@@ -1,0 +1,227 @@
+.phone-setting-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 440px;
+  min-height: 100%;
+  margin: 0 auto;
+  background-color: #ffffff;
+  box-sizing: border-box;
+}
+
+.phone-setting-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 20px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+}
+
+.phone-setting-content::-webkit-scrollbar {
+  display: none;
+}
+
+.phone-setting-title {
+  margin: 0 0 6px 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.phone-setting-desc {
+  margin: 0 0 20px 0;
+  font-size: 13px;
+  color: #64748b;
+}
+
+/* 폼 그룹 */
+.phone-form-block {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.field-group-label {
+  font-size: 13px;
+  color: #475569;
+  margin-bottom: 8px;
+}
+
+.field-sub-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 8px;
+}
+
+.field-sub-guide {
+  margin-top: 6px;
+  font-size: 11px;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+/* 현재 등록된 번호 카드 */
+.current-phone-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+}
+
+.phone-info-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.current-phone-text {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.verified-status-text {
+  font-size: 12px;
+  color: #64748b;
+}
+
+
+.btn-change-inline:hover {
+  background-color: #f8fafc;
+}
+
+/* 입력 필드 */
+.phone-text-input {
+  width: 100%;
+  height: 46px;
+  padding: 0 14px;
+  border-radius: 8px;
+  border: 1px solid #D1D5DB;
+  font-size: 14px;
+  color: #0f172a;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.phone-text-input:focus {
+  border-color: #0f172a;
+}
+
+/* 인증 방법 선택 칩 */
+.auth-chip-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.auth-chip {
+  padding: 6px 12px;
+  background-color: #F3F4F6;
+  border: 1px solid #E5E7EB;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1F2937;
+  cursor: pointer;
+  outline: none;
+}
+
+.auth-chip.active {
+  background-color: #F3F4F6;
+  color: #1F2937;
+  font-weight: 600;
+}
+
+.btn-request-code {
+  margin-left: auto;
+}
+
+.btn-request-code:hover {
+  background-color: #f8fafc;
+}
+
+/* 인증 안내 박스 */
+.auth-guide-box {
+  padding: 12px;
+  background-color: #F9FAFB;
+  border: 1px solid #E5E7EB;
+  border-radius: 6px;
+  margin-bottom: 24px;
+}
+
+.auth-guide-title {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1F2937;
+  margin-bottom: 8px;
+}
+
+.auth-guide-list {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.auth-guide-list li {
+  font-size: 11px;
+  color: #475569;
+}
+
+/* 인증 확인 버튼 */
+.btn-verify-submit {
+  margin-top: 10px;
+  transition: all 0.15s ease;
+}
+
+.btn-verify-submit:hover {
+  background-color: #0f172a;
+}
+
+.btn-verify-submit.verified {
+  background-color: #059669;
+  cursor: default;
+}
+
+/* 데이터 보호 안내 */
+.data-protection-block {
+  margin-bottom: 24px;
+}
+
+.protection-title {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: #1F2937;
+  margin-bottom: 12px;
+}
+
+.protection-desc {
+  margin: 0;
+  font-size: 11px;
+  color: #64748b;
+  line-height: 1.45;
+}
+
+/* 하단 액션 버튼 */
+.phone-page-actions {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 12px;
+}
+
+.btn-action-cancel:hover {
+  background-color: #f8fafc;
+}
+
+.btn-action-save:hover {
+  background-color: #0f172a;
+}
