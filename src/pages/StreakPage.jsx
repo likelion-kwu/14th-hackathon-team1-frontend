@@ -1,19 +1,26 @@
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/common/Button';
+import { getStreak } from '../api/members';
+import { getMemberId } from '../utils/memberSession';
 import './StreakPage.css';
-
-/* 백엔드 API 미연결 시 사용할 임시 데이터 */
-const DEFAULT_STREAK_DATA = {
-  streakDays: 12,
-  shareItems: '스트릭, 응답 여부'
-};
 
 /**
  * 스트릭 탭 기본 화면: 응답 스트릭 요약 및 친구와 함께 기능
  */
 export const StreakPage = () => {
   const navigate = useNavigate();
-  const data = DEFAULT_STREAK_DATA;
+  const [streakDays, setStreakDays] = useState(null);
+  const shareItems = '스트릭, 응답 여부';
+
+  useEffect(() => {
+    const memberId = getMemberId();
+    if (!memberId) return;
+
+    getStreak(memberId)
+      .then((data) => setStreakDays(data.currentStreak))
+      .catch((error) => console.error('스트릭 조회 오류', error));
+  }, []);
 
   return (
     <div className="streak-page-content">
@@ -24,7 +31,9 @@ export const StreakPage = () => {
         <div className="streak-card-row">
           <div className="streak-card-text">
             <span className="streak-card-label">연속 응답</span>
-            <span className="streak-card-value">{data.streakDays}일째 이어가는 중 🔥</span>
+            <span className="streak-card-value">
+              {streakDays === null ? '불러오는 중…' : `${streakDays}일째 이어가는 중 🔥`}
+            </span>
           </div>
           <Button variant="link" onClick={() => navigate('/streak/detail')}>
             자세히 보기
@@ -48,7 +57,7 @@ export const StreakPage = () => {
         <div className="streak-card-row">
           <div className="streak-card-text">
             <span className="streak-card-label">안부 공유 설정</span>
-            <span className="streak-card-sub">공유 중인 항목: {data.shareItems}</span>
+            <span className="streak-card-sub">공유 중인 항목: {shareItems}</span>
           </div>
           <Button variant="link" onClick={() => navigate('/streak/share-settings')}>
             설정

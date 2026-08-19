@@ -1,43 +1,38 @@
+import { useState, useEffect } from 'react';
 import { Button } from '../../components/common/Button';
+import { getStreak } from '../../api/members';
+import { getMemberId } from '../../utils/memberSession';
 import './StreakDetailPage.css';
 
-/* 백엔드 API 미연결 시 사용할 임시 데이터 */
-const DEFAULT_WEEKLY_STATUS = [
-  { day: '월', answered: true },
-  { day: '화', answered: true },
-  { day: '수', answered: true },
-  { day: '목', answered: true },
-  { day: '금', answered: true },
-  { day: '토', answered: false },
-  { day: '일', answered: false }
-];
-
-const STREAK_DAYS = 12;
-
 /**
- * 응답 스트릭 현황 화면: 이번 주 요일별 응답 여부와 스트릭 설명
+ * 응답 스트릭 현황 화면: 연속 응답 일수와 최고 기록
  */
 export const StreakDetailPage = () => {
+  const [streak, setStreak] = useState(null);
+
+  useEffect(() => {
+    const memberId = getMemberId();
+    if (!memberId) return;
+
+    getStreak(memberId)
+      .then(setStreak)
+      .catch((error) => console.error('스트릭 조회 오류', error));
+  }, []);
+
   return (
     <div className="streak-detail-content">
       <p className="streak-detail-section-title">응답 스트릭</p>
       <div className="streak-detail-count-card">
-        <p className="streak-detail-count">{STREAK_DAYS}</p>
+        <p className="streak-detail-count">{streak ? streak.currentStreak : '–'}</p>
         <p className="streak-detail-count-label">일 연속 응답 중</p>
       </div>
 
-      <p className="streak-detail-section-title">이번 주 응답 현황</p>
-      <div className="streak-detail-week-row">
-        {DEFAULT_WEEKLY_STATUS.map((item) => (
-          <div key={item.day} className="streak-detail-day">
-            <span className="streak-detail-day-label">{item.day}</span>
-            {item.answered ? (
-              <span className="streak-detail-check">✓</span>
-            ) : (
-              <span className="streak-detail-empty" />
-            )}
-          </div>
-        ))}
+      <p className="streak-detail-section-title">최고 기록</p>
+      <div className="streak-detail-count-card">
+        <p className="streak-detail-count">{streak ? streak.longestStreak : '–'}</p>
+        <p className="streak-detail-count-label">
+          {streak?.lastActiveDate ? `마지막 응답: ${streak.lastActiveDate}` : '아직 응답 기록이 없어요'}
+        </p>
       </div>
 
       <div className="streak-detail-info-card">
