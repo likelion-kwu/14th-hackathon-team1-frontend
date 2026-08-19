@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/common/Button';
+import { getStoredCallRecords } from '../utils/callRecordStorage';
 import './RecordPage.css';
 
 // 백엔드 API 연동을 위한 Mock 데이터 구조
@@ -52,7 +53,20 @@ const DEFAULT_RECORD_DATA = {
 
 export const RecordPage = ({ userData }) => {
   const navigate = useNavigate();
-  const [recordData, setRecordData] = useState(DEFAULT_RECORD_DATA);
+  const callRecords = getStoredCallRecords().map((record) => ({
+    id: record.id,
+    category: record.category,
+    summaryText: `${record.content} · 오늘`,
+    status: 'NORMAL',
+    actionText: '근거 확인 →',
+    question: record.question,
+    answer: record.answer,
+    confidence: record.confidence
+  }));
+  const [recordData, setRecordData] = useState({
+    ...DEFAULT_RECORD_DATA,
+    weeklyRecords: [...callRecords, ...DEFAULT_RECORD_DATA.weeklyRecords]
+  });
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -78,7 +92,10 @@ export const RecordPage = ({ userData }) => {
     navigate('/record/detail', {
       state: {
         recordId: recordItem.id,
-        category: recordItem.category
+        category: recordItem.category,
+        question: recordItem.question,
+        answer: recordItem.answer,
+        confidence: recordItem.confidence
       }
     });
   };

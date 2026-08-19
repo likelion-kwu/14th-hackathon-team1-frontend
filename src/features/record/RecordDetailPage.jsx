@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '../../components/common/Button';
+import { deleteStoredCallRecord } from '../../utils/callRecordStorage';
 import './RecordDetailPage.css';
 
 // 기본 Mock 데이터 구조
@@ -62,6 +63,7 @@ export const RecordDetailPage = () => {
     const currentCategory = recordState.category || DEFAULT_DETAIL_DATA.summary.category;
     const currentContent = recordState.summary || DEFAULT_DETAIL_DATA.summary.content;
     const currentConfidence = recordState.confidence || DEFAULT_DETAIL_DATA.summary.confidence;
+    const isCallDerived = Boolean(recordState.question && recordState.answer);
 
     setData((prev) => ({
       ...prev,
@@ -71,7 +73,17 @@ export const RecordDetailPage = () => {
         category: currentCategory,
         content: currentContent,
         confidence: currentConfidence
-      }
+      },
+      evidenceList: isCallDerived
+        ? [
+            {
+              id: 1,
+              tag: '근거 1',
+              source: 'AI 안부 전화',
+              dialogue: `"${recordState.question}"\n"${recordState.answer}"`
+            }
+          ]
+        : DEFAULT_DETAIL_DATA.evidenceList
     }));
 
     setEditForm({
@@ -108,6 +120,9 @@ export const RecordDetailPage = () => {
     if (window.confirm('정말 이 기록을 삭제하시겠습니까?')) {
       try {
         // TODO: 백엔드 API 연동 (DELETE /api/records/${data.id})
+        if (recordState.recordId && String(recordState.recordId).startsWith('call-')) {
+          deleteStoredCallRecord(recordState.recordId);
+        }
         console.log('기록 삭제 요청 ID:', data.id);
         alert('기록이 삭제되었습니다.');
         navigate('/record/list', { replace: true });

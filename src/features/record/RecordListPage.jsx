@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getStoredCallRecords } from '../../utils/callRecordStorage';
 import './RecordListPage.css';
 
 // 백엔드 API 연동을 위한 Mock 데이터 구조
@@ -62,9 +63,26 @@ const DEFAULT_AUTO_RECORDS = [
   }
 ];
 
+const CONFIDENCE_STATUS_TYPE = {
+  '높음': 'high',
+  '보통': 'medium',
+  '낮음': 'low',
+  '확인 필요': 'warning'
+};
+
 export const RecordListPage = () => {
   const navigate = useNavigate();
-  const [records, setRecords] = useState(DEFAULT_AUTO_RECORDS);
+  const callRecords = getStoredCallRecords().map((record) => ({
+    id: record.id,
+    category: record.category,
+    summary: record.content,
+    confidence: record.confidence,
+    statusType: CONFIDENCE_STATUS_TYPE[record.confidence] || 'medium',
+    date: record.date,
+    question: record.question,
+    answer: record.answer
+  }));
+  const [records, setRecords] = useState([...callRecords, ...DEFAULT_AUTO_RECORDS]);
   const [selectedDate, setSelectedDate] = useState('ALL');
   const [selectedCategory, setSelectedCategory] = useState('ALL');
   const [isLoading, setIsLoading] = useState(false);
@@ -96,7 +114,9 @@ export const RecordListPage = () => {
         category: item.category,
         date: item.date,
         summary: item.summary,
-        confidence: item.confidence
+        confidence: item.confidence,
+        question: item.question,
+        answer: item.answer
       }
     });
   };
