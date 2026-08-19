@@ -8,6 +8,10 @@ import { Step3 } from "../features/onboarding/components/Step3";
 import { Step4 } from "../features/onboarding/components/Step4";
 import { Step5 } from "../features/onboarding/components/Step5";
 import { Step6 } from "../features/onboarding/components/Step6";
+import { createMember } from "../api/members";
+import { updateNotificationSetting } from "../api/members";
+import { setMemberId } from "../utils/memberSession";
+import { ApiError } from "../api/client";
 
 import './OnboardingPage.css'
 
@@ -16,6 +20,7 @@ export const OnboardingPage = ({ onComplete }) => {
   const [currentStep, setCurrentStep] = useState(1); // 현재 온보딩 페이지
 
   const [formData, setFormData] = useState({
+    nickname: '',
     phoneNumber: '',
     verificationCode:'',
     agreements: {
@@ -75,13 +80,29 @@ export const OnboardingPage = ({ onComplete }) => {
   // [설정 완료, 시작하기] 클릭 시 실행
   const handleFinalSubmit = async () => {
     try {
-      console.log('최종 온보딩 등록 데이터 백엔드 전송:', formData);
-      // TODO: 백엔드 API 연동 (POST /api/users/init-settings)
-      
+      const member = await createMember({
+        nickname: formData.nickname,
+        phone: formData.phoneNumber
+      });
+      setMemberId(member.id);
+
+      if (formData.settings.startTime) {
+        await updateNotificationSetting(member.id, {
+          notifyTime: formData.settings.startTime,
+          notifyEnabled: true
+        });
+      }
+
       handleFinish(formData);
     } catch (error) {
-      console.error('설정 저장 에러:', error);
-      alert('설정 저장 중 오류가 발생했습니다.');
+      if (error instanceof ApiError && error.code === 'CONFLICT') {
+        alert('이미 가입된 전화번호입니다.');
+      } else if (error instanceof ApiError && error.code === 'VALIDATION_FAILED') {
+        alert(error.fieldErrors?.[0]?.message || '입력값을 다시 확인해주세요.');
+      } else {
+        console.error('회원가입 에러:', error);
+        alert('설정 저장 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+      }
     }
   };
 
@@ -116,6 +137,8 @@ export const OnboardingPage = ({ onComplete }) => {
             <Step3
                 phoneNumber={formData.phoneNumber}
                 onChangePhone={(val) => handleUpdateFormData('phoneNumber', val)}
+                nickname={formData.nickname}
+                onChangeNickname={(val) => handleUpdateFormData('nickname', val)}
                 onNext={handleNextStep}
           />
         )}
