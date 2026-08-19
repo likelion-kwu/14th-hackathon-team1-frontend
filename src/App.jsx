@@ -13,6 +13,7 @@ import { WeeklyHealthPage } from './features/health/WeeklyHealthPage';
 import { FeedbackDetail } from './features/health/FeedbackDetail';
 import { RecordListPage } from './features/record/RecordListPage';
 import { RecordDetailPage } from './features/record/RecordDetailPage';
+import { CallTimeSettingPage } from './features/settings/CallTimeSettingPage';
 
 function App() {
   // 온보딩 완료 핸들러
@@ -57,6 +58,8 @@ function App() {
 
         <Route path='record/list' element={<RecordListPage/>} />
         <Route path='record/detail' element={<RecordDetailPage/>} />
+      
+        <Route path='settings/call-time' element={<CallTimeSettingPage/>} />
       </Route>
 
       {/* 기타 잘못된 접근 시 홈으로 이동 */}

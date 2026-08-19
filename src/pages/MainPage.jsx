@@ -18,12 +18,14 @@ const PATH_TITLES = {
   '/call': '통화 진행 화면',
   '/streak': '소셜 및 스트릭',
   '/settings': '설정 및 데이터 관리',
+  '/settings/call-time': '통화 시간 변경'
 };
 
 // 뒤로가기(<) 버튼을 표시할 경로 목록
 const SHOW_BACK_PATHS = [
   '/health/daily', '/health/weekly', '/feedbackDetail',
-  '/record/list', '/record/detail'
+  '/record/list', '/record/detail',
+  '/settings/call-time'
 ];
 
 export const MainPage = () => {
