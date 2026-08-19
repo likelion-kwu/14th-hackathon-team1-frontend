@@ -15,8 +15,14 @@ const PATH_TITLES = {
   '/record/list': '자동 기록 목록',
   '/record/detail' : '기록 상세 및 근거',
 
-  '/call': '통화 진행 화면',
+  '/call': 'AI 안부 전화',
+  '/call/in-progress': '통화 진행 화면',
+  '/call/missed': '부재중 알림',
+  '/call/chat': '채팅 이어하기',
   '/streak': '소셜 및 스트릭',
+  '/streak/detail': '응답 스트릭 현황',
+  '/streak/invite': '친구 초대',
+  '/streak/share-settings': '친구 안부 공유 설정',
   '/settings': '설정 및 데이터 관리',
   '/settings/call-time': '통화 시간 변경',
   '/settings/phone': '전화번호 변경',
@@ -28,7 +34,9 @@ const PATH_TITLES = {
 const SHOW_BACK_PATHS = [
   '/health/daily', '/health/weekly', '/feedbackDetail',
   '/record/list', '/record/detail',
-  '/settings/call-time', '/settings/phone', '/settings/data-management', '/settings/privacy-policy'
+  '/settings/call-time', '/settings/phone', '/settings/data-management', '/settings/privacy-policy',
+  '/call/in-progress', '/call/missed', '/call/chat',
+  '/streak/detail', '/streak/invite', '/streak/share-settings'
 ];
 
 export const MainPage = ({ userData, onUpdateUserData }) => {
