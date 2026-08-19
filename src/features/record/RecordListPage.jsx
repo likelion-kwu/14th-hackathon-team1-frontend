@@ -90,7 +90,7 @@ export const RecordListPage = () => {
 
   // 카드 클릭 시 상세 페이지로 이동하며 데이터 전달
   const handleCardClick = (item) => {
-    navigate('/record/Detail', {
+    navigate('/record/detail', {
       state: {
         recordId: item.id,
         category: item.category,
