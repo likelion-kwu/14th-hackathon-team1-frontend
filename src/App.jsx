@@ -16,6 +16,7 @@ import { RecordDetailPage } from './features/record/RecordDetailPage';
 import { CallTimeSettingPage } from './features/settings/CallTimeSettingPage';
 import { PhoneSettingPage } from './features/settings/PhoneSettingPage';
 import { DataManagementPage } from './features/settings/DataManagementPage';
+import { PrivacyPolicyPage } from './features/settings/PrivacyPolicyPage';
 
 function App() {
   // 온보딩 완료 핸들러
@@ -68,6 +69,7 @@ function App() {
         <Route path='settings/call-time' element={<CallTimeSettingPage/>} />
         <Route path='settings/phone' element={<PhoneSettingPage/>} />
         <Route path='settings/data-management' element={<DataManagementPage/>} />
+        <Route path='settings/privacy-policy' element={<PrivacyPolicyPage/>} />
       </Route>
 
       {/* 기타 잘못된 접근 시 홈으로 이동 */}
