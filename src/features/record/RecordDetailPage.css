@@ -1,0 +1,353 @@
+.record-detail-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 440px;
+  min-height: 100%;
+  margin: 0 auto;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.record-detail-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+}
+
+.record-detail-content::-webkit-scrollbar {
+  display: none;
+}
+
+.detail-loading-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  color: #64748b;
+  font-size: 14px;
+}
+
+/* 상단 헤더 */
+.detail-header-section {
+  margin-bottom: 16px;
+}
+
+.detail-main-title {
+  margin: 0 0 16px 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1F2937;
+}
+
+.detail-date-text {
+  margin: 0;
+  font-size: 11px;
+  color: #64748b;
+}
+
+/* 1. 기록 요약 카드 */
+.detail-summary-card {
+  padding: 12px;
+  background-color: #F9FAFB;
+  border-radius: 6px;
+  border: 1px solid #E5E7EB;
+  margin-bottom: 16px;
+}
+
+.card-inner-title {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1F2937;
+}
+
+.summary-info-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.summary-info-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #1F2937;
+}
+
+.info-value {
+  color: #1F2937;
+  font-weight: 400;
+  word-break: break-all;
+}
+
+.confidence-row {
+  align-items: center;
+}
+
+.confidence-col {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 4px;
+}
+
+.confidence-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  background-color: #fac9c5;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1F2937;
+  width: fit-content;
+}
+
+.confidence-sub-text {
+  font-size: 11px;
+  color: #64748b;
+}
+
+/* 2. 대화 근거 리스트 */
+.detail-evidence-section {
+  margin-bottom: 16px;
+}
+
+.section-heading-title {
+  margin: 0 0 16px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1F2937;
+}
+
+.evidence-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.evidence-item-card {
+  padding: 12px;
+  background-color: #F9FAFB;
+  border-radius: 6px;
+  border: 1px solid #E5E7EB;
+}
+
+.evidence-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.evidence-source {
+  font-size: 11px;
+  color: #1F2937;
+}
+
+.evidence-tag {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+.evidence-dialogue-text {
+  margin: 0;
+  font-size: 12px;
+  color: #1F2937;
+  line-height: 1.5;
+}
+
+/* 면책 안내 문구 */
+.detail-disclaimer-text {
+  text-align: left;
+  font-size: 11px;
+  color: #1F2937;
+  margin-bottom: 16px;
+}
+
+/* 하단 버튼 세트 */
+.detail-action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* 버튼 전용 보조 색상 커스텀 (빨간색 삭제 버튼) */
+.btn-red {
+  background-color: #FCA5A5 !important;
+  color: #7F1D1D !important;
+}
+
+.btn-red:hover {
+  background-color: #f87171 !important;
+  color: #ffffff !important;
+}
+
+/* 4. 수정 모달 */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 20px;
+}
+
+.modal-card {
+  width: 100%;
+  max-width: 342px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 20px 24px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.modal-title {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* 폼 필드 */
+.modal-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.modal-field-label {
+  font-size: 14px;
+  font-weight: 400;
+  color: #1F2937;
+}
+
+.modal-select {
+  height: 42px;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background-color: #ffffff;
+  font-size: 14px;
+  color: #9CA3AF;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 14px;
+}
+
+.modal-input {
+  height: 42px;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  font-size: 13px;
+  color: #0f172a;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.modal-input:focus,
+.modal-select:focus {
+  border-color: #0f172a;
+}
+
+.modal-notice-text {
+  margin: 0px 0 12px 0;
+  font-size: 11px;
+  color: #1F2937;
+  line-height: 1.4;
+}
+
+/* 삭제 모달 텍스트 */
+.modal-delete-prompt {
+  margin: 0 0 12px 0;
+  font-size: 12px;
+  font-weight: 400;
+  color: #1F2937;
+}
+
+.modal-delete-desc {
+  margin: 0 0 12px 0;
+  font-size: 11px;
+  color: #64748b;
+  line-height: 1.45;
+}
+
+/* 모달 하단 버튼 */
+.modal-actions-row {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.modal-btn-cancel {
+  padding: 8px 16px;
+  background-color: #ffffff;
+  border: 1px solid #1F2937;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1F2937;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.15s ease;
+}
+
+.modal-btn-cancel:hover {
+  background-color: #f8fafc;
+}
+
+.modal-btn-save {
+  padding: 8px 16px;
+  background-color: #1F2937;
+  border: 1px solid #1F2937;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #FFFFFF;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.15s ease;
+}
+
+.modal-btn-save:hover {
+  background-color: #0f172a;
+}
+
+.modal-btn-delete {
+  padding: 8px 16px;
+  background-color: #FCA5A5;
+  border-color: #FCA5A5;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #7F1D1D;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.15s ease;
+}
+
+.modal-btn-delete:hover {
+  background-color: #f87171;
+  color: #ffffff;
+}
