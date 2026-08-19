@@ -1,0 +1,257 @@
+.data-manage-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 440px;
+  min-height: 100%;
+  margin: 0 auto;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.data-manage-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+}
+
+.data-manage-content::-webkit-scrollbar {
+  display: none;
+}
+
+.data-manage-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.data-manage-title {
+  margin: 0 0 20px 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1F2937;
+}
+
+/* 1. 안내 카드 */
+.data-guide-card {
+  padding: 12px;
+  background-color: #F9FAFB;
+  border: 1px solid #E5E7EB;
+  border-radius: 6px;
+  margin-bottom: 24px;
+}
+
+.guide-card-title {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1F2937;
+}
+
+.guide-row {
+  display: flex;
+  font-size: 12px;
+  margin-bottom: 6px;
+  line-height: 1.45;
+}
+
+.guide-label {
+  color: #334155;
+  font-weight: 600;
+  margin-right: 6px;
+  flex-shrink: 0;
+}
+
+.guide-value {
+  color: #475569;
+}
+
+.guide-notice-text {
+  margin: 12px 0 0 0;
+  font-size: 11px;
+  color: #475569;
+  line-height: 1.45;
+}
+
+.guide-disclaimer-text {
+  margin: 0;
+  font-size: 11px;
+  color: #64748b;
+}
+
+/* 섹션 공통 */
+.data-section-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.section-group-title {
+  margin: 0 0 16px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1F2937;
+}
+
+/* 2. 보관 중인 데이터 카드 */
+.stored-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.stored-data-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  background-color: #F9FAFB;
+  border: 1px solid #E5E7EB;
+  border-radius: 6px;
+}
+
+.stored-text-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stored-title {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 400;
+  color: #1F2937;
+}
+
+.stored-summary {
+  margin: 0;
+  font-size: 12px;
+  color: #64748b;
+}
+
+
+/* 3. 삭제 처리 현황 카드 */
+.status-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.deletion-status-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  background-color: #F9FAFB;
+  border: 1px solid #E5E7EB;
+  border-radius: 6px;
+}
+
+.status-text-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.deletion-title {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: #1F2937;
+}
+
+.deletion-date {
+  margin: 0;
+  font-size: 11px;
+  color: #64748b;
+}
+
+.status-badge {
+  font-size: 11px;
+  font-weight: 500;
+  color: #475569;
+}
+
+.status-badge.pending {
+  color: #0f172a;
+}
+
+/* 하단 고지 및 링크 */
+.data-manage-footer-notice {
+  margin: 0 0 16px 0;
+  font-size: 11px;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+.link-btn-back {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: 14px;
+  color: #6B7280;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* 4. 모달 */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 24px;
+}
+
+.modal-content-box {
+  width: 100%;
+  max-width: 342px;
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  padding: 20px 24px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.modal-heading {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1F2937;
+}
+
+.modal-main-text {
+  margin: 0 0 12px 0;
+  font-size: 12px;
+  color: #1F2937;
+  line-height: 1.5;
+}
+
+.modal-sub-text {
+  margin: 0 0 20px 0;
+  font-size: 11px;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+.modal-action-row {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
