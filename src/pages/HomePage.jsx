@@ -37,9 +37,9 @@ const DEFAULT_DASHBOARD_DATA = {
     destination: 'callSettings'
   },
   shortcuts: [
-    { id: 'records', label: '기록 관리', destination: 'records' },
-    { id: 'streak', label: '스트릭', destination: 'streak' },
-    { id: 'settings', label: '설정', destination: 'settings' }
+    { id: 'records', label: '기록 관리', destination: '/record' },
+    { id: 'streak', label: '스트릭', destination: '/streak' },
+    { id: 'settings', label: '설정', destination: '/settings' }
   ]
 };
 
@@ -251,7 +251,10 @@ export const HomePage = ({
                   key={shortcut.id}
                   type="button"
                   className="shortcut-chip-btn"
-                  onClick={() => onNavigate && onNavigate(shortcut.destination)}
+                  onClick={(e) => {
+                  e.stopPropagation();
+                  navigate(shortcut.destination);
+                }}
                 >
                   {shortcut.label}
                 </button>

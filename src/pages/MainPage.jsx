@@ -7,17 +7,24 @@ import './MainPage.css';
 
 const PATH_TITLES = {
   '/': '홈 대시보드',
+  '/health/daily' : '일간 건강 기록',
+  '/health/weekly' : '주간 건강 기록',
+  '/feedbackDetail' : '생활 습관 피드백',
+
   '/record': '건강 기록 관리',
+  '/record/list': '자동 기록 목록',
+  '/record/detail' : '기록 상세 및 근거',
+
   '/call': '통화 진행 화면',
   '/streak': '소셜 및 스트릭',
   '/settings': '설정 및 데이터 관리',
-  '/health/daily' : '일간 건강 기록',
-  '/health/weekly' : '주간 건강 기록',
-  '/feedbackDetail' : '생활 습관 피드백'
 };
 
 // 뒤로가기(<) 버튼을 표시할 경로 목록
-const SHOW_BACK_PATHS = ['/health/daily', '/health/weekly', '/feedbackDetail'];
+const SHOW_BACK_PATHS = [
+  '/health/daily', '/health/weekly', '/feedbackDetail',
+  '/record/list', '/record/detail'
+];
 
 export const MainPage = () => {
   const location = useLocation();

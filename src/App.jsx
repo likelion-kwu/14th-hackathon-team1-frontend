@@ -11,6 +11,8 @@ import { SettingPage } from './pages/SettingPage';
 import { DailyHealthPage } from './features/health/DailyHealthPage';
 import { WeeklyHealthPage } from './features/health/WeeklyHealthPage';
 import { FeedbackDetail } from './features/health/FeedbackDetail';
+import { RecordListPage } from './features/record/RecordListPage';
+import { RecordDetailPage } from './features/record/RecordDetailPage';
 
 function App() {
   // 온보딩 완료 핸들러
@@ -52,6 +54,9 @@ function App() {
         <Route path='health/daily' element={<DailyHealthPage />} />
         <Route path='health/weekly' element={<WeeklyHealthPage />} />
         <Route path='feedbackDetail' element={<FeedbackDetail/>} />
+
+        <Route path='record/list' element={<RecordListPage/>} />
+        <Route path='record/detail' element={<RecordDetailPage/>} />
       </Route>
 
       {/* 기타 잘못된 접근 시 홈으로 이동 */}

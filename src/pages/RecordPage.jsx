@@ -73,9 +73,9 @@ export const RecordPage = ({ userData }) => {
     fetchRecordData();
   }, []);
 
-  // 카드 클릭 시 상세 페이지(/record/Detail)로 이동하며 recordId 전달
+  // 카드 클릭 시 상세 페이지(/record/detail)로 이동하며 recordId 전달
   const handleNavigateToDetail = (recordItem) => {
-    navigate('/record/Detail', {
+    navigate('/record/detail', {
       state: {
         recordId: recordItem.id,
         category: recordItem.category
