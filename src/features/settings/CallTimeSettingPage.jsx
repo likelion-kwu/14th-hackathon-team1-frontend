@@ -2,35 +2,40 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './CallTimeSettingPage.css';
 import { Button } from '../../components/common/Button';
+import { getMember, updateNotificationSetting } from '../../api/members';
+import { getMemberId } from '../../utils/memberSession';
 
-// 기본 Mock 설정값
+// 기본 값 (서버에서 못 불러왔을 때만 사용)
 const DEFAULT_CALL_TIME_SETTINGS = {
-  callTimeRange: '09:00-18:00', // 선호 통화 시간대
-  frequency: '3',               // 주간 빈도 (횟수)
-  excludeHolidays: true         // 공휴일 제외 여부
+  callTimeRange: '09:00-18:00',
+  frequency: '3',
+  excludeHolidays: true
 };
 
 export const CallTimeSettingPage = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState(DEFAULT_CALL_TIME_SETTINGS);
-  const [isLoading, setIsLoading] = useState(false);
+  const [notifyEnabled, setNotifyEnabled] = useState(true);
+  const [isLoading, setIsLoading] = useState(() => Boolean(getMemberId()));
+  const [isSaving, setIsSaving] = useState(false);
 
   useEffect(() => {
-    // TODO: 백엔드 API 연동 (GET /api/users/settings/call-time)
-    const fetchCallTimeSettings = async () => {
-      try {
-        setIsLoading(true);
-        // const res = await fetch('/api/users/settings/call-time');
-        // const json = await res.json();
-        // setFormData(json);
-      } catch (error) {
-        console.error('통화 시간 설정 조회 오류:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+    const memberId = getMemberId();
+    if (!memberId) {
+      return;
+    }
 
-    fetchCallTimeSettings();
+    getMember(memberId)
+      .then((member) => {
+        setNotifyEnabled(member.notifyEnabled);
+        // 서버는 시각 하나만 관리해서, 저장된 시각을 시작 시간으로 보여줍니다
+        const time = member.notifyTime?.slice(0, 5);
+        if (time) {
+          setFormData((prev) => ({ ...prev, callTimeRange: `${time}-18:00` }));
+        }
+      })
+      .catch((error) => console.error('통화 시간 설정 조회 오류:', error))
+      .finally(() => setIsLoading(false));
   }, []);
 
   const handleChange = (field, value) => {
@@ -49,14 +54,22 @@ export const CallTimeSettingPage = () => {
 
   // 설정 저장 핸들러
   const handleSave = async () => {
+    const memberId = getMemberId();
+    if (!memberId) {
+      alert('회원 정보가 없어요. 온보딩을 먼저 완료해주세요.');
+      return;
+    }
+    setIsSaving(true);
     try {
-      // TODO: 백엔드 API 연동 (PATCH /api/users/settings/call-time, formData)
-      console.log('수정된 통화 시간 설정 전송:', formData);
+      const notifyTime = formData.callTimeRange.split('-')[0];
+      await updateNotificationSetting(memberId, { notifyTime, notifyEnabled });
       alert('통화 시간 설정이 저장되었습니다.');
-      navigate(-1); // 이전 화면(설정 메인)으로 이동
+      navigate(-1);
     } catch (error) {
       console.error('통화 시간 저장 실패:', error);
       alert('저장 중 오류가 발생했습니다.');
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -146,8 +159,9 @@ export const CallTimeSettingPage = () => {
           <Button
             className="btn-save"
             onClick={handleSave}
+            disabled={isSaving}
           >
-            저장
+            {isSaving ? '저장 중…' : '저장'}
           </Button>
         </div>
       </main>

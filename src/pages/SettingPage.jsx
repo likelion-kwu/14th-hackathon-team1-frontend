@@ -1,16 +1,18 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/common/Button';
+import { getMember, updateNotificationSetting } from '../api/members';
+import { getMemberId } from '../utils/memberSession';
 import './SettingPage.css';
 
-// 백엔드 API 연동을 위한 Mock 데이터 구조
+// 백엔드에 아직 없는 항목(빈도, 동의 세부 항목)을 위한 기본값
 const DEFAULT_SETTINGS_DATA = {
   callSettings: {
-    availableTime: '평일 오전 9시 – 오후 6시',
+    availableTime: '설정 안 됨',
     frequency: '주 3회'
   },
   phoneInfo: {
-    phoneNumber: '010-****-5678',
+    phoneNumber: '',
     isVerified: true
   },
   agreements: {
@@ -25,38 +27,48 @@ export const SettingPage = ({ userData }) => {
 
   // 설정 데이터 상태
   const [settings, setSettings] = useState(DEFAULT_SETTINGS_DATA);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(() => Boolean(getMemberId()));
+  const [notifyTime, setNotifyTime] = useState('21:00');
 
   // 모달 제어 상태
   const [isWithdrawModalOpen, setIsWithdrawModalOpen] = useState(false);
   const [isStopCallModalOpen, setIsStopCallModalOpen] = useState(false);
 
   useEffect(() => {
-    // TODO: 백엔드 API 연동 (GET /api/users/settings)
-    const fetchSettings = async () => {
-      try {
-        setIsLoading(true);
-        // const res = await fetch('/api/users/settings');
-        // const json = await res.json();
-        // setSettings(json);
-      } catch (error) {
-        console.error('설정 데이터 로드 실패:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+    const memberId = getMemberId();
+    if (!memberId) {
+      return;
+    }
 
-    fetchSettings();
+    getMember(memberId)
+      .then((member) => {
+        setNotifyTime(member.notifyTime?.slice(0, 5) || '21:00');
+        setSettings((prev) => ({
+          ...prev,
+          callSettings: {
+            ...prev.callSettings,
+            availableTime: member.notifyTime ? `매일 ${member.notifyTime.slice(0, 5)}` : '설정 안 됨'
+          },
+          phoneInfo: { ...prev.phoneInfo, phoneNumber: member.phone },
+          isCallReceptionActive: member.notifyEnabled
+        }));
+      })
+      .catch((error) => console.error('설정 데이터 로드 실패:', error))
+      .finally(() => setIsLoading(false));
   }, []);
 
   // AI 전화 수신 토글 핸들러
-  const handleToggleCallReception = () => {
+  const handleToggleCallReception = async () => {
+    const memberId = getMemberId();
+    if (!memberId) return;
     const nextState = !settings.isCallReceptionActive;
-    setSettings((prev) => ({
-      ...prev,
-      isCallReceptionActive: nextState
-    }));
-    // TODO: 백엔드 API 연동 (PATCH /api/users/settings/call-reception, { active: nextState })
+    setSettings((prev) => ({ ...prev, isCallReceptionActive: nextState }));
+    try {
+      await updateNotificationSetting(memberId, { notifyTime, notifyEnabled: nextState });
+    } catch (error) {
+      console.error('알림 설정 변경 오류:', error);
+      setSettings((prev) => ({ ...prev, isCallReceptionActive: !nextState }));
+    }
   };
 
   // 1. 동의 철회 확정 핸들러
@@ -74,13 +86,15 @@ export const SettingPage = ({ userData }) => {
 
   // 2. AI 전화 수신 중단 확정 핸들러
   const handleConfirmStopCall = async () => {
+    const memberId = getMemberId();
     try {
-      // TODO: 백엔드 API 연동 (POST /api/users/call/stop)
+      if (memberId) {
+        await updateNotificationSetting(memberId, { notifyTime, notifyEnabled: false });
+      }
       setSettings((prev) => ({
         ...prev,
         isCallReceptionActive: false
       }));
-      console.log('AI 전화 수신 중단 처리');
       alert('AI 전화 수신이 중단되었습니다.');
       setIsStopCallModalOpen(false);
     } catch (error) {
