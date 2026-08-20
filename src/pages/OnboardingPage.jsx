@@ -24,6 +24,9 @@ export const OnboardingPage = ({ onComplete }) => {
   const [isSplash, setIsSplash] = useState(true);
   const [isFadingOut, setIsFadingOut] = useState(false);
 
+  // Firebase SMS 인증 확인 객체 상태
+  const [confirmationResult, setConfirmationResult] = useState(null);
+
   useEffect(() => {
     // 1.5초(1500ms) 후 페이드아웃 애니메이션 시작
     const fadeTimer = setTimeout(() => {
@@ -88,6 +91,12 @@ export const OnboardingPage = ({ onComplete }) => {
       ...prev,
       [key]: value
     }));
+  };
+
+  // Step3에서 SMS 발송 성공 시 confirmationResult를 저장하고 Step4로 이동
+  const handleStep3Next = (result) => {
+    setConfirmationResult(result);
+    handleNextStep();
   };
 
   // 온보딩 완료 후 상태 업데이트 및 홈(/) 이동 처리 공통 함수
@@ -167,7 +176,7 @@ export const OnboardingPage = ({ onComplete }) => {
                 onChangePhone={(val) => handleUpdateFormData('phoneNumber', val)}
                 nickname={formData.nickname}
                 onChangeNickname={(val) => handleUpdateFormData('nickname', val)}
-                onNext={handleNextStep}
+                onNext={handleStep3Next}
           />
         )}
 
@@ -178,6 +187,7 @@ export const OnboardingPage = ({ onComplete }) => {
                 onChangeCode={(val) => handleUpdateFormData('verificationCode', val)}
                 onNext={handleNextStep}
                 onBackToPhone={handlePrevStep}
+                onSetConfirmationResult={setConfirmationResult}
             />
         )}
 
