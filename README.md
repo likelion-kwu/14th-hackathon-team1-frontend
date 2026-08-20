@@ -1,16 +1,43 @@
-# React + Vite
+## HEY 앱 설치 가이드
+### iOS (아이폰 / 아이패드)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+iOS 환경에서는 Safari 브라우저를 통해 설치를 진행해야 합니다.
+1. Safari로 접속
 
-Currently, two official plugins are available:
+   배포된 웹사이트 링크를 Safari 앱으로 엽니다. (카카오톡, 인스타그램 등 인앱 브라우저인 경우 우측 하단 메뉴 $\rightarrow$ 'Safari로 열기' 선택)
+3. 공유 메뉴 열기
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+   하단 툴바 중앙의 공유 아이콘(네모 위로 화살표 모양)을 탭합니다.
+5. 홈 화면에 추가
 
-## React Compiler
+   메뉴 목록을 아래로 내려 [홈 화면에 추가]를 선택합니다.
+7. 설치 완료
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+   우측 상단의 [추가]를 누르면 홈 화면에 앱 아이콘이 생성됩니다.
 
-## Expanding the ESLint configuration
+### Galaxy / Android (삼성 갤럭시 / 안드로이드)
+Chrome(크롬) 또는 삼성 인터넷 브라우저를 통해 설치할 수 있습니다.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+방법 1. 자동 설치 팝업 이용
+1. 브라우저로 웹사이트에 접속합니다.
+2. 화면 하단에 나타나는 [홈 화면에 추가] 또는 [앱 설치] 배너를 탭합니다.
+3. 팝업 창에서 [설치]를 누르면 다운로드가 완료됩니다.
+
+방법 2. 브라우저 메뉴에서 수동 설치
+
+Chrome 브라우저:
+1. 우측 상단 더보기(점 3개) 아이콘을 탭합니다.
+2. [앱 설치] 또는 [홈 화면에 추가]를 선택합니다.
+3. [설치]를 눌러 완료합니다.
+
+삼성 인터넷 브라우저:
+1. 우측 하단 메뉴(줄 3개) 아이콘을 탭합니다.
+2. [현재 페이지 추가] $\rightarrow$ [홈 화면]을 선택합니다.
+3. [추가]를 눌러 완료합니다.
+
+### ⚠️ 주의사항
+인앱 브라우저 접속 제한: 카카오톡, 인스타그램, 페이스북 등의 앱 내 링크로 접속한 상태에서는 홈 화면 추가 기능이 정상 작동하지 않습니다. 
+반드시 Safari(iOS) 또는 Chrome/삼성 인터넷(Galaxy) 기본 브라우저로 열어주세요.
+
+### 설치 확인 
+설치 완료 후 홈 화면의 아이콘을 실행했을 때, 상단 주소창 없이 전체 화면(독립형 앱 모드)으로 열리는지 확인하세요.
