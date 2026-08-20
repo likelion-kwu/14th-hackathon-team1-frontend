@@ -1,4 +1,5 @@
 .call-time-container {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -10,17 +11,10 @@
 }
 
 .call-time-content {
-  flex: 1;
   display: flex;
   flex-direction: column;
   padding: 24px 20px;
-  overflow-y: auto;
   box-sizing: border-box;
-  -webkit-overflow-scrolling: touch;
-}
-
-.call-time-content::-webkit-scrollbar {
-  display: none;
 }
 
 .call-time-loading-box {
@@ -43,7 +37,7 @@
 .form-group-block {
   display: flex;
   flex-direction: column;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .field-guide-text {
@@ -59,36 +53,44 @@
   margin-bottom: 6px;
 }
 
-/* 셀렉트 드롭다운 */
+/* 셀렉트 드롭다운 버튼 */
 .select-container {
   position: relative;
   width: 100%;
 }
 
-.call-time-select {
+.call-time-select-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
   height: 48px;
   padding: 0 16px;
-  border-radius: 4px;
+  border-radius: 6px;
   border: 1px solid #d1d5db;
   background-color: #ffffff;
   font-size: 14px;
-  color: #64748b;
-  outline: none;
+  color: #1e293b;
+  text-align: left;
   cursor: pointer;
-  appearance: none;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-  background-repeat: no-repeat;
-  background-position: right 14px center;
-  background-size: 16px;
   box-sizing: border-box;
+  transition: border-color 0.15s;
 }
 
-.call-time-select:focus {
+.call-time-select-btn:focus {
   border-color: #0f172a;
 }
 
-/* 토글 스위치 행 */
+.dropdown-arrow-icon {
+  width: 16px;
+  height: 16px;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+/* 토글 스위치 */
 .toggle-row-between {
   display: flex;
   align-items: center;
@@ -147,18 +149,19 @@
   transform: translateX(22px);
 }
 
-/* 안내 문구 */
 .call-time-notice {
   margin: 0 0 16px 0;
-  font-size: 11px;
+  font-size: 12px;
+  line-height: 1.5;
   color: #64748b;
 }
 
-/* 하단 버튼 */
+/* 하단 버튼 (공휴일/안내문구 바로 아래 16px 간격으로 위치) */
 .call-time-actions {
   display: flex;
   justify-content: flex-end;
   gap: 8px;
+  margin-top: 16px;
 }
 
 .btn-cancel {
@@ -175,4 +178,148 @@
 
 .btn-save:hover {
   background-color: #0f172a;
+}
+
+/* --- 바텀 시트 & 휠 피커 (고정 높이 및 정렬 완벽 보정) --- */
+.bottom-sheet-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 1000;
+}
+
+.bottom-sheet-modal {
+  width: 100%;
+  max-width: 440px;
+  background-color: #ffffff;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  padding: 12px 20px 24px;
+  box-sizing: border-box;
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.12);
+  animation: slideUp 0.25s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.sheet-handle-bar {
+  width: 36px;
+  height: 4px;
+  background-color: #94a3b8;
+  border-radius: 2px;
+  margin: 0 auto 16px;
+}
+
+/* 3행(132px) 표시 컨테이너 */
+.picker-container {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  height: 132px; /* 44px * 3개 행 */
+  overflow: hidden;
+  margin: 12px 0;
+}
+
+.freq-picker-container {
+  justify-content: center;
+}
+
+/* 가운데 2번째 행(선택 행) 하이라이트 */
+.picker-highlight-bar {
+  position: absolute;
+  top: 44px; /* 첫 번째 행 바로 아래 */
+  left: 0;
+  right: 0;
+  height: 44px;
+  background: #f1f5f9;
+  border-radius: 8px;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+/* 빈도 피커 전용 텍스트 고정 */
+.freq-fixed-label {
+  position: absolute;
+  font-size: 20px;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 44px;
+}
+
+.freq-fixed-label.left {
+  left: calc(50% - 40px);
+}
+
+.freq-fixed-label.right {
+  right: calc(50% - 40px);
+}
+
+.picker-column {
+  flex: 1;
+  height: 132px;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+  z-index: 2;
+}
+
+.picker-column.freq-column {
+  flex: none;
+  width: 50px;
+}
+
+.picker-column::-webkit-scrollbar {
+  display: none;
+}
+
+/* 상하 1칸씩(44px) 스페이서 */
+.picker-padding-spacer {
+  height: 44px;
+  min-height: 44px;
+  box-sizing: border-box;
+}
+
+/* 피커 개별 항목 */
+.picker-item {
+  height: 44px;
+  min-height: 44px;
+  line-height: 44px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 500;
+  color: #94a3b8;
+  scroll-snap-align: center;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.15s, font-size 0.15s;
+}
+
+.picker-item.active {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.bottom-sheet-footer {
+  margin-top: 20px;
 }

@@ -153,7 +153,7 @@ export const SettingPage = ({ userData }) => {
                 <span className="verified-badge">인증 완료</span>
               )}
             </div>
-            <p className="info-field-value">{userData.phoneNumber}</p>
+            <p className="info-field-value">{settings.phoneInfo.phoneNumber || userData?.phoneNumber || '등록된 번호 없음'}</p>
 
             <div className="card-row-end mt-12">
               <button

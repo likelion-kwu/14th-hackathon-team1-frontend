@@ -1,13 +1,11 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../../components/common/Button';
-import { startConversation, sendMessage, completeConversation } from '../../api/conversations';
-import { getMember } from '../../api/members';
+import { getMessages, startConversation, sendMessage, completeConversation } from '../../api/conversations';
 import { getMemberId } from '../../utils/memberSession';
+import { requestMicrophonePermission } from '../../utils/browserPermissions';
 import { ApiError } from '../../api/client';
 import './CallInProgressPage.css';
-
-const OPENING_LINE = '안녕하세요! 오늘 하루 어떠셨어요? 편하게 말씀해주세요.';
 
 // 브라우저 음성 인식 API (Chrome/Edge는 webkit 접두사, 미지원 브라우저는 null)
 const SpeechRecognitionAPI =
@@ -138,22 +136,30 @@ export const CallInProgressPage = () => {
       return;
     }
 
+    if (SpeechRecognitionAPI && !(await requestMicrophonePermission())) {
+      setErrorMessage('마이크 권한을 허용해야 음성 통화를 시작할 수 있어요. 브라우저 설정에서 마이크를 허용한 뒤 다시 시도해주세요.');
+      setCallStatus('error');
+      return;
+    }
+
     setCallStatus('connecting');
     try {
       const conversation = await startConversation(memberId, 'CALL');
+      const messages = await getMessages(conversation.id);
       conversationRef.current = conversation;
       setIsAnswered(true);
       setElapsedSec(0);
 
-      let opening = OPENING_LINE;
-      try {
-        const member = await getMember(memberId);
-        opening = `안녕하세요 ${member.nickname}님! 오늘 하루 어떠셨어요? 편하게 말씀해주세요.`;
-      } catch {
-        // 이름을 못 가져와도 기본 인사말로 진행
-      }
+      const transcript = messages
+        .filter((message) => message.role === 'USER' || message.role === 'ASSISTANT')
+        .map((message) => ({
+          role: message.role === 'USER' ? 'user' : 'assistant',
+          text: message.content
+        }));
+      const opening = messages.find((message) => message.role === 'ASSISTANT')?.content
+        || '안녕하세요. 오늘 몸과 마음은 어떠신가요?';
 
-      setQnaLog([{ role: 'assistant', text: opening }]);
+      setQnaLog(transcript);
       speak(opening, () => listenForAnswer());
     } catch (error) {
       console.error('대화 시작 오류', error);

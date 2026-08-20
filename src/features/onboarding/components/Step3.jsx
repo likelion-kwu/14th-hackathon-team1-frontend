@@ -79,14 +79,14 @@ export const Step3 = ({ phoneNumber, onChangePhone, nickname, onChangeNickname, 
         <div className="step3-info-card">
           <h4 className="info-card-header">안내</h4>
           <p className="info-card-text">
-            등록한 번호로 AI 안부 전화를 발신합니다. <br/>인증 절차를 통해 번호 소유를 확인합니다.
+            등록한 번호로 AI 안부 전화를 발신합니다.
           </p>
         </div>
 
         {/* 4. 하단 다음 버튼 */}
         <div className="step3-footer">
           <Button type="submit" disabled={!isValidPhone || !isValidNickname}>
-            인증번호 받기
+            가입하기
           </Button>
         </div>
       </form>

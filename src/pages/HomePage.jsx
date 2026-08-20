@@ -1,270 +1,185 @@
-import React, { useState, useEffect } from 'react';
-import './HomePage.css';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getTodayHealthRecords } from '../api/healthRecords';
+import { getMember, getStreak } from '../api/members';
+import { getDailySummary } from '../api/summaries';
+import { getMemberId } from '../utils/memberSession';
+import './HomePage.css';
 
-/* 백엔드 API 미연결 시 사용할 임시 데이터 */
-const DEFAULT_DASHBOARD_DATA = {
-  userName: '사용자',
-  todayStatus: {
-    sleep: '7시간 30분',
-    diet: '3회',
-    exercise: '30분',
-    skin: '보통',
-    lastCallTime: '오늘 오전 9:02'
-  },
-  recordsSummary: [
-    {
-      id: 'daily',
-      title: '일간 기록',
-      description: '오늘의 기록 확인',
-      destination: '/health/daily'
-    },
-    {
-      id: 'weekly',
-      title: '주간 기록',
-      description: '이번 주 건강 흐름 한눈에 보기',
-      destination: '/health/weekly'
-    }
-  ],
-  weeklyFeedback: {
-    summary: '수면 시간이 평균보다 40분 늘었어요.\n식사 규칙성도 꾸준히 유지되고 있습니다.',
-    notice: '이 피드백은 의료 진단이 아닙니다.',
-    destination: '/feedbackDetail'
-  },
-  nextCall: {
-    scheduledTime: '내일 오전 9:00 예정',
-    actionText: '전화 설정',
-    destination: '/settings/call-time'
-  },
-  shortcuts: [
-    { id: 'records', label: '기록 관리', destination: '/record' },
-    { id: 'streak', label: '스트릭', destination: '/streak' },
-    { id: 'settings', label: '설정', destination: '/settings' }
-  ]
-};
-
-// 건강 상태 라벨 매핑 테이블
-const STATUS_LABEL_MAP = [
-  { key: 'sleep', label: '수면' },
-  { key: 'diet', label: '식사' },
-  { key: 'exercise', label: '운동' },
-  { key: 'skin', label: '피부' }
+const STATUS_ITEMS = [
+  { type: 'SLEEP', label: '수면' },
+  { type: 'MEAL', label: '식사' },
+  { type: 'EXERCISE', label: '운동' },
+  { type: 'SKIN', label: '피부' }
 ];
 
-/**
- * 홈 대시보드 페이지 컴포넌트
- * @param {Object} props
- * @param {Object} props.userData - 온보딩 또는 전역에서 전달받은 사용자 정보
- * @param {Object} props.dashboardData - 외부(부모/API)에서 주입받는 대시보드 데이터 (없을 경우 내부 mock 또는 fetch 데이터 사용)
- * @param {Function} props.onNavigate - 페이지 또는 탭 이동 핸들러
- */
-export const HomePage = ({
-  userData,
-  dashboardData: initialData,
-  onNavigate
-}) => {
-  // 대시보드 데이터 상태 관리
-  const [data, setData] = useState(initialData || DEFAULT_DASHBOARD_DATA);
-  const [isLoading, setIsLoading] = useState(!initialData);
-  //const [activeTab, setActiveTab] = useState('home');
+const formatNotifyTime = (notifyTime) => {
+  if (!notifyTime) return '통화 시간을 설정해 주세요.';
+  return `매일 ${notifyTime.slice(0, 5)} 예정`;
+};
 
+const formatLastRecordedAt = (records) => {
+  const latest = records
+    .map((record) => record.recordedAt)
+    .filter(Boolean)
+    .sort((left, right) => new Date(right) - new Date(left))[0];
+
+  if (!latest) return '오늘 기록이 아직 없어요.';
+
+  return `마지막 기록 ${new Intl.DateTimeFormat('ko-KR', {
+    hour: 'numeric',
+    minute: '2-digit'
+  }).format(new Date(latest))}`;
+};
+
+export const HomePage = () => {
   const navigate = useNavigate();
+  const [dashboard, setDashboard] = useState(null);
+  const [loadError, setLoadError] = useState(() =>
+    getMemberId() ? '' : '회원 정보가 없어요. 온보딩을 먼저 완료해주세요.'
+  );
 
   useEffect(() => {
-    // 부모로부터 dashboardData가 들어오면 바로 상태 업데이트
-    if (initialData) {
-      setData(initialData);
-      setIsLoading(false);
+    const memberId = getMemberId();
+    if (!memberId) {
       return;
     }
 
-    // TODO: 백엔드 API 연동 시 아래 패턴 사용 (GET /api/dashboard)
-    const fetchDashboardData = async () => {
-      try {
-        setIsLoading(true);
-        // const res = await fetch('/api/dashboard');
-        // const result = await res.json();
-        // setData(result);
+    let isMounted = true;
 
-        // API 연동 전 임시 데이터 로드 시뮬레이션
-        setData(DEFAULT_DASHBOARD_DATA);
-      } catch (err) {
-        console.error('대시보드 데이터 로드 실패:', err);
-      } finally {
-        setIsLoading(false);
+    const loadDashboard = async () => {
+      const [memberResult, recordsResult, streakResult, summaryResult] = await Promise.allSettled([
+        getMember(memberId),
+        getTodayHealthRecords(memberId),
+        getStreak(memberId),
+        getDailySummary(memberId)
+      ]);
+
+      if (!isMounted) return;
+
+      if (memberResult.status !== 'fulfilled') {
+        setLoadError('홈 데이터를 불러오지 못했어요. 잠시 후 다시 시도해주세요.');
+        return;
       }
+
+      const records = recordsResult.status === 'fulfilled' ? recordsResult.value : [];
+      const streak = streakResult.status === 'fulfilled' ? streakResult.value : null;
+      const dailySummary = summaryResult.status === 'fulfilled' ? summaryResult.value : null;
+
+      setDashboard({
+        member: memberResult.value,
+        records,
+        streak,
+        dailySummary
+      });
     };
 
-    fetchDashboardData();
-  }, [initialData]);
+    loadDashboard().catch((error) => {
+      console.error('홈 데이터 조회 오류', error);
+      if (isMounted) {
+        setLoadError('홈 데이터를 불러오지 못했어요. 잠시 후 다시 시도해주세요.');
+      }
+    });
 
-//   const handleTabChange = (tabId) => {
-//     setActiveTab(tabId);
-//     if (onNavigate) {
-//       onNavigate(tabId);
-//     }
-//   };
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
-  const {
-    todayStatus = {},
-    recordsSummary = [],
-    weeklyFeedback = {},
-    nextCall = {},
-    shortcuts = []
-  } = data;
-
-  if (isLoading) {
+  if (loadError) {
     return (
       <div className="home-content-inner">
-        <p className="loading-text">대시보드 데이터를 불러오는 중입니다...</p>
+        <p className="loading-text">{loadError}</p>
       </div>
     );
   }
 
+  if (!dashboard) {
+    return (
+      <div className="home-content-inner">
+        <p className="loading-text">홈 데이터를 불러오는 중입니다...</p>
+      </div>
+    );
+  }
+
+  const { member, records, streak, dailySummary } = dashboard;
+  const recordsByType = new Map(records.map((record) => [record.type, record]));
+
   return (
     <div className="home-page-container">
-
-      {/* 2. 대시보드 본문 스크롤 영역 */}
       <main className="home-page-content">
-        {/* 상단 환영 메시지 */}
         <h2 className="home-greeting-title">
-          안녕하세요, 오늘도 잘 지내고 계신가요?
+          안녕하세요, {member.nickname}님. <br/>오늘은 어떻게 지내고 계신가요?
         </h2>
 
-        {/* 1. 오늘의 안부 상태 섹션 */}
         <section className="dashboard-card status-card">
           <h3 className="card-header-title">오늘의 안부 상태</h3>
-
           <div className="status-grid">
-            {STATUS_LABEL_MAP.map(({ key, label }) => (
-              <div key={key} className="status-item">
+            {STATUS_ITEMS.map(({ type, label }) => (
+              <div key={type} className="status-item">
                 <span className="status-label">{label}</span>
-                <span className="status-value">
-                  {todayStatus[key] || '-'}
-                </span>
+                <span className="status-value">{recordsByType.get(type)?.summary || '-'}</span>
               </div>
             ))}
           </div>
-
           <div className="status-footer">
-            <span className="status-time-text">
-              마지막 안부 대화: {todayStatus.lastCallTime || '기록 없음'}
-            </span>
+            <span className="status-time-text">{formatLastRecordedAt(records)}</span>
           </div>
         </section>
 
-        {/* 2. 건강 기록 섹션 */}
         <section className="dashboard-section">
           <h3 className="section-heading">건강 기록</h3>
-          {recordsSummary.map((item) => (
-            <div
-              key={item.id}
-              className="record-card"
-              onClick={() => navigate(item.destination)}
-              role="button"
-              tabIndex={0}
-            >
-              <div className="record-card-text">
-                <h4 className="record-card-title">{item.title}</h4>
-                <p className="record-card-desc">{item.description}</p>
-              </div>
-              <button
-                type="button"
-                className="link-text-btn"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  navigate(item.destination);
-                }}
-              >
-                보기
-              </button>
+          <div className="record-card" onClick={() => navigate('/record')} role="button" tabIndex={0}>
+            <div className="record-card-text">
+              <h4 className="record-card-title">오늘 기록</h4>
+              <p className="record-card-desc">
+                {records.length > 0 ? `오늘 추출된 건강 기록 ${records.length}건` : '오늘 기록이 아직 없어요.'}
+              </p>
             </div>
-          ))}
+            <button type="button" className="link-text-btn" onClick={() => navigate('/record')}>보기</button>
+          </div>
+          <div className="record-card" onClick={() => navigate('/streak')} role="button" tabIndex={0}>
+            <div className="record-card-text">
+              <h4 className="record-card-title">연속 안부</h4>
+              <p className="record-card-desc">
+                {streak ? `${streak.currentStreak}일째 이어가고 있어요.` : '연속 기록을 불러오지 못했어요.'}
+              </p>
+            </div>
+            <button type="button" className="link-text-btn" onClick={() => navigate('/streak')}>보기</button>
+          </div>
         </section>
 
-        {/* 3. 생활 습관 피드백 섹션 */}
-        {weeklyFeedback && (
+        {dailySummary && (
           <section className="dashboard-section">
-            <h3 className="section-heading">생활 습관 피드백</h3>
-
+            <h3 className="section-heading">오늘의 AI 요약</h3>
             <div className="feedback-card">
-              <h4 className="feedback-card-title">이번 주 피드백</h4>
-              <p className="feedback-paragraph">
-                {weeklyFeedback.summary?.split('\n').map((line, idx) => (
-                  <React.Fragment key={idx}>
-                    {line}
-                    {idx < weeklyFeedback.summary.split('\n').length - 1 && <br />}
-                  </React.Fragment>
-                ))}
+              <p className="feedback-paragraph">{dailySummary.summary}</p>
+              <span className="feedback-sub-notice">대화 {dailySummary.conversationCount}건을 바탕으로 생성됐어요.</span>
+            </div>
+          </section>
+        )}
+
+        <section className="dashboard-section">
+          <h3 className="section-heading">AI 안부 통화</h3>
+          <div className="call-info-card">
+            <div className="call-info-text">
+              <h4 className="call-info-title">다음 안부 통화</h4>
+              <p className="call-info-desc">
+                {member.notifyEnabled ? formatNotifyTime(member.notifyTime) : '알림이 꺼져 있어요.'}
               </p>
-              {weeklyFeedback.notice && (
-                <span className="feedback-sub-notice">
-                  {weeklyFeedback.notice}
-                </span>
-              )}
-
-              <button
-                type="button"
-                className="link-text-btn"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  navigate(weeklyFeedback.destination);
-                }}
-              >
-                피드백 자세히 보기
-              </button>
             </div>
-          </section>
-        )}
+            <button type="button" className="link-text-btn" onClick={() => navigate('/settings/call-time')}>설정</button>
+          </div>
+        </section>
 
-        {/* 4. AI 안부 전화 섹션 */}
-        {nextCall && (
-          <section className="dashboard-section">
-            <h3 className="section-heading">AI 안부 전화</h3>
-
-            <div className="call-info-card">
-              <div className="call-info-text">
-                <h4 className="call-info-title">다음 안부 전화</h4>
-                <p className="call-info-desc">
-                  {nextCall.scheduledTime || '설정된 일정이 없습니다.'}
-                </p>
-              </div>
-              <button
-                type="button"
-                className="link-text-btn"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  navigate(nextCall.destination);
-                }}
-              >
-                {nextCall.actionText || '설정'}
-              </button>
-            </div>
-          </section>
-        )}
-
-        {/* 5. 바로가기 섹션 */}
-        {shortcuts.length > 0 && (
-          <section className="dashboard-section">
-            <h3 className="section-heading">바로가기</h3>
-
-            <div className="shortcut-group">
-              {shortcuts.map((shortcut) => (
-                <button
-                  key={shortcut.id}
-                  type="button"
-                  className="shortcut-chip-btn"
-                  onClick={(e) => {
-                  e.stopPropagation();
-                  navigate(shortcut.destination);
-                }}
-                >
-                  {shortcut.label}
-                </button>
-              ))}
-            </div>
-          </section>
-        )}
+        <section className="dashboard-section">
+          <h3 className="section-heading">바로가기</h3>
+          <div className="shortcut-group">
+            <button type="button" className="shortcut-chip-btn" onClick={() => navigate('/record')}>기록 관리</button>
+            <button type="button" className="shortcut-chip-btn" onClick={() => navigate('/streak')}>스트릭</button>
+            <button type="button" className="shortcut-chip-btn" onClick={() => navigate('/settings')}>설정</button>
+          </div>
+        </section>
       </main>
     </div>
   );
