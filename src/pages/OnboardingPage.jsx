@@ -72,14 +72,18 @@ export const OnboardingPage = ({ onComplete }) => {
 
   // 다음 스텝으로 이동
   const handleNextStep = () => {
-    if (currentStep < 6) {
+    if (currentStep === 3) {
+      setCurrentStep(5);
+    } else if (currentStep < 6) {
       setCurrentStep((prev) => prev + 1);
     }
   };
 
   // 이전 스텝으로 이동
   const handlePrevStep = () => {
-    if (currentStep > 1) {
+    if (currentStep === 5) {
+      setCurrentStep(3);
+    } else if (currentStep > 1) {
       setCurrentStep((prev) => prev - 1);
     }
   };
