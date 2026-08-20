@@ -8,13 +8,15 @@ import './Step6.css';
  * @param {Function} props.onChangeSettings - 통화 설정 변경 핸들러
  * @param {Function} props.onSubmit - [설정 완료, 시작하기] 최종 제출 핸들러
  * @param {Function} props.onBack - [이전 단계로 돌아가기] 클릭 시 Step 5로 이동
+ * @param {boolean} props.isSubmitting - 회원 생성 요청 진행 여부
  */
 
 export const Step6 = ({
     settings,
     onChangeSettings,
     onSubmit,
-    onBack
+    onBack,
+    isSubmitting = false
     }) => {
         
   // Select Box 및 필드 일반 변경
@@ -204,7 +206,7 @@ export const Step6 = ({
 
       {/* 7. 하단 제출 버튼 세트 */}
       <div className="step6-footer">
-        <Button onClick={onSubmit}>
+        <Button onClick={onSubmit} disabled={isSubmitting}>
           시작하기
         </Button>
         <button type="button" className="text-link-btn" onClick={onBack}>

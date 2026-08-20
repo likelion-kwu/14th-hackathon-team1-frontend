@@ -11,6 +11,7 @@ import { Step6 } from "../features/onboarding/components/Step6";
 import { createMember } from "../api/members";
 import { updateNotificationSetting } from "../api/members";
 import { setMemberId } from "../utils/memberSession";
+import { requestNotificationPermission } from "../utils/browserPermissions";
 import { ApiError } from "../api/client";
 
 import Logo from '../assets/images/HEY_onboarding.png'
@@ -20,6 +21,7 @@ import './OnboardingPage.css'
 export const OnboardingPage = ({ onComplete }) => { 
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1); // 현재 온보딩 페이지
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [isSplash, setIsSplash] = useState(true);
   const [isFadingOut, setIsFadingOut] = useState(false);
@@ -101,7 +103,12 @@ export const OnboardingPage = ({ onComplete }) => {
 
   // [설정 완료, 시작하기] 클릭 시 실행
   const handleFinalSubmit = async () => {
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
     try {
+      await requestNotificationPermission();
+
       const member = await createMember({
         nickname: formData.nickname,
         phone: formData.phoneNumber
@@ -125,6 +132,8 @@ export const OnboardingPage = ({ onComplete }) => {
         console.error('회원가입 에러:', error);
         alert('설정 저장 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
       }
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -188,7 +197,8 @@ export const OnboardingPage = ({ onComplete }) => {
                 agreements={formData.agreements}
                 onChangeAgreements={(val) => handleUpdateFormData('agreements', val)}
                 onNext={handleNextStep}
-                onSkipToHome={() => handleFinish(formData)}
+                onSkipToHome={handleFinalSubmit}
+                isSubmitting={isSubmitting}
             />
         )}
 
@@ -198,6 +208,7 @@ export const OnboardingPage = ({ onComplete }) => {
             onChangeSettings={(val) => handleUpdateFormData('settings', val)}
             onSubmit={handleFinalSubmit}
             onBack={handlePrevStep}
+            isSubmitting={isSubmitting}
           />
         )}
       </main>
