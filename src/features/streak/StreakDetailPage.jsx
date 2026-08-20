@@ -42,7 +42,7 @@ export const StreakDetailPage = () => {
         </p>
       </div>
 
-      <Button onClick={() => alert('공유 설정 화면을 준비 중입니다.')}>스트릭 공유 설정</Button>
+      <Button className='streak-share-btn' onClick={() => alert('공유 설정 화면을 준비 중입니다.')}>스트릭 공유 설정</Button>
     </div>
   );
 };

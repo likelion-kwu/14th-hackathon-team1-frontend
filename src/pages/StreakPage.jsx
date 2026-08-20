@@ -49,7 +49,7 @@ export const StreakPage = () => {
             <span className="streak-card-label">친구 초대</span>
             <span className="streak-card-sub">신뢰하는 친구에게 초대장을 보내세요</span>
           </div>
-          <Button onClick={() => navigate('/streak/invite')}>초대하기</Button>
+          <Button className='streak-invite-btn' onClick={() => navigate('/streak/invite')}>초대하기</Button>
         </div>
       </div>
 
@@ -72,7 +72,7 @@ export const StreakPage = () => {
         </p>
       </div>
 
-      <Button variant="link" onClick={() => navigate(-1)}>
+      <Button className='streak-invite-btn' variant="link" onClick={() => navigate(-1)}>
         이전으로
       </Button>
     </div>

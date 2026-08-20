@@ -73,3 +73,7 @@
   font-size: 11px;
   color: #1f2937;
 }
+
+.streak-invite-btn {
+  width: fit-content;
+}
