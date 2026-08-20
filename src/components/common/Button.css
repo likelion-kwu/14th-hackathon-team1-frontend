@@ -23,13 +23,13 @@
 
 /* 검정색 버튼 */
 .btn-black {
-  background-color: #1F2937;
-  color: #ffffff;
+  background-color: #74E8FF;
+  color: #1F2937;
   border: 1px solid transparent;
 }
 
 .btn-black:hover:not(.btn-disabled) {
-  background-color: #0f172a;
+  background-color: #74E8FF;
 }
 
 .btn-black:active:not(.btn-disabled) {
