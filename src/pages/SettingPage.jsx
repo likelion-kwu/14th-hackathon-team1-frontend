@@ -312,7 +312,7 @@ export const SettingPage = ({ userData }) => {
                 취소
               </Button>
               <Button
-                className="modal-btn dark"
+                variant='red'
                 onClick={handleConfirmStopCall}
               >
                 수신 중단
