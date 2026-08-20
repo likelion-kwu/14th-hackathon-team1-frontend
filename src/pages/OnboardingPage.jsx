@@ -146,11 +146,13 @@ export const OnboardingPage = ({ onComplete }) => {
         </div>
       )}
 
-      <Header
-        title={headerTitles[currentStep]}
-        onBack={handlePrevStep}
-        showBack={currentStep > 1}
-      />
+      {currentStep > 1 && (
+        <Header
+          title={headerTitles[currentStep]}
+          onBack={handlePrevStep}
+          showBack={currentStep > 1}
+        />
+      )}
 
       <main className="onboarding-content">
         {currentStep === 1 && (

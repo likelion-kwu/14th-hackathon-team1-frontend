@@ -1,16 +1,15 @@
 import { Button } from '../../../components/common/Button'
+import Logo from '../../../assets/images/HEY_onboarding.png'
 import './Step1.css'
 
 export const Step1 = ({onNext}) => {
     return(
         <div className='step1-container'>
             <div className='step1-image-box'>
-                {/* <img src='...' alt='안부 일러스트'/> */}
-                <span className='step1-image-placeholder'>Image</span>
+                <img src={ Logo } alt='안부 일러스트'/>
             </div>
 
             <div className="step1-title-group">
-                <h2 className="step1-title">안부</h2>
                 <p className="step1-subtitle">
                 매일 한 통의 전화가 나의 건강 기록이 됩니다
                 </p>
