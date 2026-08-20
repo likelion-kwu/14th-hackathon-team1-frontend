@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import './App.css'
-import { OnboardingPage } from './pages/OnboardingPage'
+import './App.css';
+import { OnboardingPage } from './pages/OnboardingPage';
 import { MainPage } from './pages/MainPage';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { HomePage } from './pages/HomePage';
@@ -23,10 +23,13 @@ import { ChatContinuePage } from './features/call/ChatContinuePage';
 import { StreakDetailPage } from './features/streak/StreakDetailPage';
 import { InviteFriendPage } from './features/streak/InviteFriendPage';
 import { FriendShareSettingsPage } from './features/streak/FriendShareSettingsPage';
+import { getMemberId } from './utils/memberSession';
 
 function App() {
-  // 온보딩 완료 핸들러
-  const [isOnboardingCompleted, setIsOnboardingCompleted] = useState(false);
+  // localStorage에 memberId가 존재하면 초기 상태를 true로 설정
+  const [isOnboardingCompleted, setIsOnboardingCompleted] = useState(() => {
+    return !!getMemberId();
+  });
 
   const [userProfile, setUserProfile] = useState(null);
 
@@ -38,17 +41,23 @@ function App() {
 
   const handleUpdateUserData = (updatedData) => {
     setUserProfile(updatedData);
-  }
+  };
 
   return (
     <Routes>
-      {/* 온보딩 페이지 */}
+      {/* 온보딩 페이지: 이미 가입된 상태라면 홈(/)으로 리다이렉트 */}
       <Route
         path="/onboarding"
-        element={<OnboardingPage onComplete={handleOnboardingComplete} />}
+        element={
+          isOnboardingCompleted ? (
+            <Navigate to="/" replace />
+          ) : (
+            <OnboardingPage onComplete={handleOnboardingComplete} />
+          )
+        }
       />
 
-      {/* 대시보드 공통 레이아웃 */}
+      {/* 대시보드 공통 레이아웃: 미가입 상태라면 /onboarding으로 리다이렉트 */}
       <Route
         path="/"
         element={
@@ -64,14 +73,14 @@ function App() {
         <Route path="call" element={<CallPage userData={userProfile} />} />
         <Route path="streak" element={<StreakPage userData={userProfile} />} />
         <Route path="settings" element={<SettingPage userData={userProfile} />} />
-      
+
         <Route path='health/daily' element={<DailyHealthPage />} />
         <Route path='health/weekly' element={<WeeklyHealthPage />} />
         <Route path='feedbackDetail' element={<FeedbackDetail/>} />
 
         <Route path='record/list' element={<RecordListPage/>} />
         <Route path='record/detail' element={<RecordDetailPage/>} />
-      
+
         <Route path='settings/call-time' element={<CallTimeSettingPage/>} />
         <Route path='settings/phone' element={<PhoneSettingPage/>} />
         <Route path='settings/data-management' element={<DataManagementPage/>} />
@@ -89,7 +98,7 @@ function App() {
       {/* 기타 잘못된 접근 시 홈으로 이동 */}
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
-  )
+  );
 }
 
-export default App
+export default App;
