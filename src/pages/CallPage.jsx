@@ -77,7 +77,7 @@ export const CallPage = ({ callSettings: initialSettings }) => {
         <p className="call-card-desc">
           통화를 받지 못해도 괜찮아요. 채팅에서 같은 안부 질문으로 대화를 이어갈 수 있으며, 이미 나눈 대화 내용은 반복해서 묻지 않습니다.
         </p>
-        <Button variant="link" onClick={() => navigate('/call/missed')}>
+        <Button className='missed-chat-btn' variant="link" onClick={() => navigate('/call/missed')}>
           부재중 채팅 이어하기
         </Button>
       </div>

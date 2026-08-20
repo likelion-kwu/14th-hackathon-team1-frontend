@@ -250,7 +250,7 @@ export const CallInProgressPage = () => {
         </Button>
       </div>
 
-      <Button variant="link" onClick={() => navigate('/call')}>
+      <Button className='back-btn' variant="link" onClick={() => navigate('/call')}>
         이전 화면으로 돌아가기
       </Button>
 

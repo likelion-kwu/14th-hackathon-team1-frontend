@@ -76,3 +76,7 @@
   font-weight: 500;
   color: #1f2937;
 }
+
+.missed-chat-btn {
+  width: fit-content;
+}
