@@ -34,7 +34,7 @@ const DEFAULT_DASHBOARD_DATA = {
   nextCall: {
     scheduledTime: '내일 오전 9:00 예정',
     actionText: '전화 설정',
-    destination: 'callSettings'
+    destination: '/settings/call-time'
   },
   shortcuts: [
     { id: 'records', label: '기록 관리', destination: '/record' },
@@ -232,7 +232,10 @@ export const HomePage = ({
               <button
                 type="button"
                 className="link-text-btn"
-                onClick={() => onNavigate && onNavigate(nextCall.destination || 'callSettings')}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  navigate(nextCall.destination);
+                }}
               >
                 {nextCall.actionText || '설정'}
               </button>

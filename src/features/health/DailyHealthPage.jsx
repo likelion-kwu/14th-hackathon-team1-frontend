@@ -172,7 +172,7 @@ export const DailyHealthPage = () => {
             </div>
             <p className="warning-desc">{data.warning.description}</p>
             <div className="warning-btn-wrap">
-              <Button variant="white" onClick={() => alert('검토 화면으로 이동')}>
+              <Button variant="black" onClick={() => navigate('/record/list')}>
                 기록 검토하기
               </Button>
             </div>

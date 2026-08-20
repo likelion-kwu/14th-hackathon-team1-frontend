@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Header } from '../../components/common/Header';
 import { Button } from '../../components/common/Button';
 import './WeeklyHealthPage.css';
 
@@ -95,14 +94,6 @@ export const WeeklyHealthPage = () => {
                   <h4 className="evidence-title">{log.title}</h4>
                   <p className="evidence-quote">{log.quote}</p>
                 </div>
-                
-                <button
-                  type="button"
-                  className="link-btn"
-                  onClick={() => alert(`[${log.title}] 상세 대화 확인`)}
-                >
-                  근거 보기
-                </button>
             </div>
             ))}
           </div>
@@ -116,7 +107,7 @@ export const WeeklyHealthPage = () => {
             <p className="feedback-content">{data.feedbackDetail.content}</p>
             <span className="feedback-notice">{data.feedbackDetail.notice}</span>
             <div className="feedback-btn-wrap">
-              <Button onClick={() => navigate('/record/feedback')}>
+              <Button onClick={() => navigate('/feedbackDetail')}>
                 피드백 상세 보기
               </Button>
             </div>

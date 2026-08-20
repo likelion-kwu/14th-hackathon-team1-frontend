@@ -125,14 +125,6 @@ export const FeedbackDetail = ({ feedbackData: initialData }) => {
                     <p className="pattern-desc">{item.desc}</p>
                   </div>
                 </div>
-
-                <button
-                  type="button"
-                  className="evidence-action-btn"
-                  onClick={() => alert(`[${item.title}] 근거 대화 상세 화면으로 이동합니다.`)}
-                >
-                  근거 보기
-                </button>
               </div>
             ))}
           </div>
