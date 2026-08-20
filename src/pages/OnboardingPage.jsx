@@ -8,9 +8,9 @@ import { Step3 } from "../features/onboarding/components/Step3";
 import { Step4 } from "../features/onboarding/components/Step4";
 import { Step5 } from "../features/onboarding/components/Step5";
 import { Step6 } from "../features/onboarding/components/Step6";
-import { createMember } from "../api/members";
+import { createMember, updateFcmToken } from "../api/members";
 import { updateNotificationSetting } from "../api/members";
-import { setMemberId } from "../utils/memberSession";
+import { getMemberId, setMemberId } from "../utils/memberSession";
 import { requestNotificationPermission } from "../utils/browserPermissions";
 import { ApiError } from "../api/client";
 
@@ -42,6 +42,14 @@ export const OnboardingPage = ({ onComplete }) => {
       clearTimeout(removeTimer);
     };
   }, []);
+
+  useEffect(() => {
+  const existingMemberId = getMemberId();
+  if (existingMemberId) {
+    navigate('/', { replace: true });
+    return;
+  }
+}, [navigate]);
 
   const [formData, setFormData] = useState({
     nickname: '',
@@ -107,39 +115,47 @@ export const OnboardingPage = ({ onComplete }) => {
 
   // [설정 완료, 시작하기] 클릭 시 실행
   const handleFinalSubmit = async () => {
-    if (isSubmitting) return;
+  if (isSubmitting) return;
 
-    setIsSubmitting(true);
-    try {
-      await requestNotificationPermission();
+  setIsSubmitting(true);
+  try {
+    // 1. 브라우저 권한 요청 및 FCM 토큰 획득
+    const fcmToken = await requestNotificationPermission();
 
-      const member = await createMember({
-        nickname: formData.nickname,
-        phone: formData.phoneNumber
-      });
-      setMemberId(member.id);
+    // 2. 멤버 생성 및 localStorage 저장
+    const member = await createMember({
+      nickname: formData.nickname,
+      phone: formData.phoneNumber
+    });
+    setMemberId(member.id);
 
-      if (formData.settings.startTime) {
-        await updateNotificationSetting(member.id, {
-          notifyTime: formData.settings.startTime,
-          notifyEnabled: true
-        });
-      }
-
-      handleFinish(formData);
-    } catch (error) {
-      if (error instanceof ApiError && error.code === 'CONFLICT') {
-        alert('이미 가입된 전화번호입니다.');
-      } else if (error instanceof ApiError && error.code === 'VALIDATION_FAILED') {
-        alert(error.fieldErrors?.[0]?.message || '입력값을 다시 확인해주세요.');
-      } else {
-        console.error('회원가입 에러:', error);
-        alert('설정 저장 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
-      }
-    } finally {
-      setIsSubmitting(false);
+    // 3. FCM 토큰 서버 등록 (토큰이 있는 경우)
+    if (fcmToken) {
+      await updateFcmToken(member.id, fcmToken);
     }
-  };
+
+    // 4. 알림 시간 설정이 있다면 업데이트
+    if (formData.settings.startTime) {
+      await updateNotificationSetting(member.id, {
+        notifyTime: formData.settings.startTime,
+        notifyEnabled: true
+      });
+    }
+
+    handleFinish(formData);
+  } catch (error) {
+    if (error instanceof ApiError && error.code === 'CONFLICT') {
+      alert('이미 가입된 전화번호입니다.');
+    } else if (error instanceof ApiError && error.code === 'VALIDATION_FAILED') {
+      alert(error.fieldErrors?.[0]?.message || '입력값을 다시 확인해주세요.');
+    } else {
+      console.error('회원가입 에러:', error);
+      alert('설정 저장 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+    }
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   // 단계별 헤더 타이틀 매핑
   const headerTitles = {

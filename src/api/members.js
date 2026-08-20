@@ -15,11 +15,12 @@ export const updateNotificationSetting = (memberId, { notifyTime, notifyEnabled 
   });
 
 // FCM 푸시 토큰 등록/교체
-export const updateFcmToken = (memberId, fcmToken) =>
-  apiRequest(`/api/members/${memberId}/fcm-token`, {
-    method: 'PUT',
-    body: { fcmToken }
+export const updateFcmToken = async (memberId, fcmToken) => {
+  const response = await apiRequest.put(`/api/members/${memberId}/fcm-token`, {
+    fcmToken
   });
+  return response.data;
+};
 
 // 연속 대화 기록(스트릭) 조회
 export const getStreak = (memberId) => apiRequest(`/api/members/${memberId}/streak`);
