@@ -58,6 +58,7 @@ export const FriendShareSettingsPage = () => {
           <label key={item.id} className="friend-share-check-row">
             <input
               type="checkbox"
+              className='share-checkbox'
               checked={checkedItems.includes(item.id)}
               onChange={() => toggleItem(item.id)}
             />
