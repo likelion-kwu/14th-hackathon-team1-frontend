@@ -10,6 +10,10 @@
 
 /* 1. 상단 이미지 영역 */
 .step1-image-box {
+  max-width: 100%;
+}
+
+.step1-logo {
   width: 100%;
 }
 

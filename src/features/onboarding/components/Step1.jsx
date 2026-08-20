@@ -6,7 +6,7 @@ export const Step1 = ({onNext}) => {
     return(
         <div className='step1-container'>
             <div className='step1-image-box'>
-                <img src={ Logo } alt='안부 일러스트'/>
+                <img className='step1-logo' src={ Logo } alt='안부 일러스트'/>
             </div>
 
             <div className="step1-title-group">
