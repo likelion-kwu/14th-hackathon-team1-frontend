@@ -67,6 +67,26 @@
   transform: scale(0.98);
 }
 
+/* 텍스트 링크 버튼 (밑줄) */
+.btn-link {
+  background: transparent;
+  border: none;
+  padding: 0;
+  border-radius: 0;
+  color: #6b7280;
+  text-decoration: underline;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.btn-link:hover:not(.btn-disabled) {
+  color: #0f172a;
+}
+
+.btn-link:active:not(.btn-disabled) {
+  transform: none;
+}
+
 /* 비활성화 */
 .btn-disabled {
   opacity: 0.4;

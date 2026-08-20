@@ -1,0 +1,146 @@
+.friend-share-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.friend-share-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.friend-share-section-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.friend-share-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 12px;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.friend-share-notice {
+  margin: 0;
+  font-size: 11px;
+  color: #1f2937;
+}
+
+.friend-share-check-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.friend-share-check-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #1f2937;
+  cursor: pointer;
+}
+
+.friend-share-check-row input {
+  width: 16px;
+  height: 16px;
+  accent-color: #1f2937;
+}
+
+.friend-share-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.friend-share-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  background-color: #d1d5db;
+  color: #ffffff;
+  font-size: 11px;
+}
+
+.friend-share-text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.friend-share-name {
+  font-size: 12px;
+  color: #1f2937;
+}
+
+.friend-share-status {
+  font-size: 11px;
+  color: #1f2937;
+}
+
+/* 공유 중단 / 연결 해제 확인 모달 */
+.friend-share-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background-color: rgba(0, 0, 0, 0.35);
+  z-index: 50;
+  box-sizing: border-box;
+}
+
+.friend-share-modal-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 342px;
+  padding: 20px 24px;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+}
+
+.friend-share-modal-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.friend-share-modal-desc {
+  margin: 0;
+  font-size: 12px;
+  color: #1f2937;
+}
+
+.friend-share-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}

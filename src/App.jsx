@@ -17,6 +17,12 @@ import { CallTimeSettingPage } from './features/settings/CallTimeSettingPage';
 import { PhoneSettingPage } from './features/settings/PhoneSettingPage';
 import { DataManagementPage } from './features/settings/DataManagementPage';
 import { PrivacyPolicyPage } from './features/settings/PrivacyPolicyPage';
+import { CallInProgressPage } from './features/call/CallInProgressPage';
+import { MissedCallPage } from './features/call/MissedCallPage';
+import { ChatContinuePage } from './features/call/ChatContinuePage';
+import { StreakDetailPage } from './features/streak/StreakDetailPage';
+import { InviteFriendPage } from './features/streak/InviteFriendPage';
+import { FriendShareSettingsPage } from './features/streak/FriendShareSettingsPage';
 
 function App() {
   // 온보딩 완료 핸들러
@@ -70,6 +76,14 @@ function App() {
         <Route path='settings/phone' element={<PhoneSettingPage/>} />
         <Route path='settings/data-management' element={<DataManagementPage/>} />
         <Route path='settings/privacy-policy' element={<PrivacyPolicyPage/>} />
+
+        <Route path='call/in-progress' element={<CallInProgressPage/>} />
+        <Route path='call/missed' element={<MissedCallPage/>} />
+        <Route path='call/chat' element={<ChatContinuePage/>} />
+
+        <Route path='streak/detail' element={<StreakDetailPage/>} />
+        <Route path='streak/invite' element={<InviteFriendPage/>} />
+        <Route path='streak/share-settings' element={<FriendShareSettingsPage/>} />
       </Route>
 
       {/* 기타 잘못된 접근 시 홈으로 이동 */}

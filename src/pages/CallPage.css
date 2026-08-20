@@ -1,0 +1,78 @@
+.call-page-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.call-main-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.call-main-desc {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #1f2937;
+}
+
+.call-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 12px;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.call-card-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.call-card-desc {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #1f2937;
+}
+
+.call-summary-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.call-summary-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #1f2937;
+}
+
+.call-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.call-chip {
+  padding: 6px 12px;
+  background-color: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1f2937;
+}

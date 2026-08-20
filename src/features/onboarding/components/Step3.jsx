@@ -6,9 +6,11 @@ import './Step3.css';
  * @param {Object} props
  * @param {string} props.phoneNumber - 입력된 전화번호 값
  * @param {Function} props.onChangePhone - 전화번호 변경 핸들러
+ * @param {string} props.nickname - 입력된 닉네임 값
+ * @param {Function} props.onChangeNickname - 닉네임 변경 핸들러
  * @param {Function} props.onNext - 다음 단계(Step 4: 인증 번호 입력)로 이동하는 함수
  */
-export const Step3 = ({ phoneNumber, onChangePhone, onNext }) => {
+export const Step3 = ({ phoneNumber, onChangePhone, nickname, onChangeNickname, onNext }) => {
   // 전화번호 입력 시 자동 하이픈(-) 포맷팅 처리
   const handleInputChange = (e) => {
     const rawValue = e.target.value.replace(/[^0-9]/g, ''); // 숫자만 추출
@@ -25,11 +27,11 @@ export const Step3 = ({ phoneNumber, onChangePhone, onNext }) => {
 
   // 전화번호 11자리(010-0000-0000) 검증 유효성
   const isValidPhone = phoneNumber.replace(/[^0-9]/g, '').length >= 10;
+  const isValidNickname = nickname.trim().length > 0;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (isValidPhone) {
-      // TODO: 백엔드 API 호출 (POST /api/auth/send-sms)
+    if (isValidPhone && isValidNickname) {
       onNext();
     }
   };
@@ -45,6 +47,21 @@ export const Step3 = ({ phoneNumber, onChangePhone, onNext }) => {
       {/* 2. 전화번호 입력 폼 */}
       <form onSubmit={handleSubmit} className="step3-form">
         <div className="input-field-group">
+          <label htmlFor="nickname" className="input-label">
+            닉네임
+          </label>
+          <input
+            id="nickname"
+            type="text"
+            className="phone-input"
+            value={nickname}
+            onChange={(e) => onChangeNickname(e.target.value)}
+            maxLength={50}
+            placeholder="AI가 부를 이름을 입력해주세요"
+          />
+        </div>
+
+        <div className="input-field-group">
           <label htmlFor="phoneNumber" className="input-label">
             전화번호
           </label>
@@ -55,7 +72,6 @@ export const Step3 = ({ phoneNumber, onChangePhone, onNext }) => {
             value={phoneNumber}
             onChange={handleInputChange}
             maxLength={13}
-            autoFocus
           />
           <span className="input-example">예: 010-0000-0000</span>
         </div>
@@ -70,7 +86,7 @@ export const Step3 = ({ phoneNumber, onChangePhone, onNext }) => {
 
         {/* 4. 하단 다음 버튼 */}
         <div className="step3-footer">
-          <Button type="submit" disabled={!isValidPhone}>
+          <Button type="submit" disabled={!isValidPhone || !isValidNickname}>
             인증번호 받기
           </Button>
         </div>

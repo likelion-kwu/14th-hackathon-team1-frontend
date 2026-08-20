@@ -1,0 +1,89 @@
+.invite-friend-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.invite-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.invite-desc {
+  margin: 0;
+  font-size: 12px;
+  color: #1f2937;
+}
+
+.invite-section-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.invite-field {
+  width: 100%;
+}
+
+.invite-input {
+  width: 100%;
+  height: 38px;
+  padding: 8px 12px;
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.invite-hint {
+  margin: 0;
+  font-size: 11px;
+  color: #1f2937;
+}
+
+.invite-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  padding: 12px;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.invite-check-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #1f2937;
+  cursor: pointer;
+}
+
+.invite-check-row input {
+  width: 16px;
+  height: 16px;
+  accent-color: #1f2937;
+}
+
+.invite-preview-line {
+  margin: 0;
+  font-size: 12px;
+  color: #1f2937;
+}
+
+.invite-preview-sub {
+  margin: 4px 0 0 0;
+  font-size: 11px;
+  color: #1f2937;
+}

@@ -1,0 +1,75 @@
+.streak-page-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.streak-main-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.streak-section-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.streak-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 12px;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.streak-card-clickable {
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+}
+
+.streak-card-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+}
+
+.streak-card-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.streak-card-label {
+  font-size: 12px;
+  color: #1f2937;
+}
+
+.streak-card-value {
+  font-size: 12px;
+  color: #1f2937;
+}
+
+.streak-card-sub {
+  font-size: 11px;
+  color: #1f2937;
+}
+
+.streak-card-note {
+  margin: 0;
+  font-size: 11px;
+  color: #1f2937;
+}

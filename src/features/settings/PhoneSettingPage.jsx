@@ -1,15 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import './PhoneSettingPage.css';
 import { Button } from '../../components/common/Button';
+import { getMember } from '../../api/members';
+import { getMemberId } from '../../utils/memberSession';
 
 export const PhoneSettingPage = () => {
   const navigate = useNavigate();
   // MainPage의 Outlet context로부터 userData와 업데이트 함수 수신
   const { userData, onUpdateUserData } = useOutletContext() || {};
 
-  // 현재 등록된 번호 (기본값 설정)
-  const currentRegisteredPhone = userData?.phoneNumber || '010-1234-5678';
+  // 현재 등록된 번호 (서버에서 조회, 실패 시 로컬 온보딩 값으로 대체)
+  const [currentRegisteredPhone, setCurrentRegisteredPhone] = useState(userData?.phoneNumber || '');
+
+  useEffect(() => {
+    const memberId = getMemberId();
+    if (!memberId) return;
+    getMember(memberId)
+      .then((member) => setCurrentRegisteredPhone(member.phone))
+      .catch((error) => console.error('회원 정보 조회 오류:', error));
+  }, []);
 
   // 폼 상태 관리
   const [newPhone, setNewPhone] = useState('');
