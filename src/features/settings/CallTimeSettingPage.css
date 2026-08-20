@@ -11,17 +11,10 @@
 }
 
 .call-time-content {
-  flex: 1;
   display: flex;
   flex-direction: column;
   padding: 24px 20px;
-  overflow-y: auto;
   box-sizing: border-box;
-  -webkit-overflow-scrolling: touch;
-}
-
-.call-time-content::-webkit-scrollbar {
-  display: none;
 }
 
 .call-time-loading-box {
@@ -44,7 +37,7 @@
 .form-group-block {
   display: flex;
   flex-direction: column;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .field-guide-text {
@@ -158,18 +151,36 @@
 
 .call-time-notice {
   margin: 0 0 16px 0;
-  font-size: 11px;
+  font-size: 12px;
+  line-height: 1.5;
   color: #64748b;
 }
 
+/* 하단 버튼 (공휴일/안내문구 바로 아래 16px 간격으로 위치) */
 .call-time-actions {
   display: flex;
   justify-content: flex-end;
   gap: 8px;
-  margin-top: auto;
+  margin-top: 16px;
 }
 
-/* --- 바텀 시트 & 휠 피커 스타일 --- */
+.btn-cancel {
+  transition: all 0.15s ease;
+}
+
+.btn-cancel:hover {
+  background-color: #f8fafc;
+}
+
+.btn-save {
+  transition: all 0.15s ease;
+}
+
+.btn-save:hover {
+  background-color: #0f172a;
+}
+
+/* --- 바텀 시트 & 휠 피커 (고정 높이 및 정렬 완벽 보정) --- */
 .bottom-sheet-overlay {
   position: fixed;
   top: 0;
@@ -212,11 +223,12 @@
   margin: 0 auto 16px;
 }
 
+/* 3행(132px) 표시 컨테이너 */
 .picker-container {
   position: relative;
   display: flex;
   justify-content: space-around;
-  height: 176px;
+  height: 132px; /* 44px * 3개 행 */
   overflow: hidden;
   margin: 12px 0;
 }
@@ -225,70 +237,80 @@
   justify-content: center;
 }
 
-/* 선택 영역 하이라이트 바 */
+/* 가운데 2번째 행(선택 행) 하이라이트 */
 .picker-highlight-bar {
   position: absolute;
-  top: 44px;
+  top: 44px; /* 첫 번째 행 바로 아래 */
   left: 0;
   right: 0;
   height: 44px;
-  background: linear-gradient(180deg, rgba(241, 245, 249, 0.6) 0%, rgba(226, 232, 240, 0.6) 100%);
-  border-top: 1px solid #e2e8f0;
-  border-bottom: 1px solid #e2e8f0;
+  background: #f1f5f9;
   border-radius: 8px;
   pointer-events: none;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1;
 }
 
-/* 빈도 피커 전용 고정 라벨 ("주", "회") */
+/* 빈도 피커 전용 텍스트 고정 */
 .freq-fixed-label {
   position: absolute;
   font-size: 20px;
   font-weight: 700;
   color: #0f172a;
+  line-height: 44px;
 }
 
 .freq-fixed-label.left {
-  left: calc(50% - 44px);
+  left: calc(50% - 40px);
 }
 
 .freq-fixed-label.right {
-  right: calc(50% - 44px);
+  right: calc(50% - 40px);
 }
 
 .picker-column {
   flex: 1;
-  height: 100%;
+  height: 132px;
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
   -webkit-overflow-scrolling: touch;
+  position: relative;
+  z-index: 2;
 }
 
 .picker-column.freq-column {
   flex: none;
-  width: 60px;
+  width: 50px;
 }
 
 .picker-column::-webkit-scrollbar {
   display: none;
 }
 
+/* 상하 1칸씩(44px) 스페이서 */
 .picker-padding-spacer {
   height: 44px;
+  min-height: 44px;
+  box-sizing: border-box;
 }
 
+/* 피커 개별 항목 */
 .picker-item {
   height: 44px;
+  min-height: 44px;
+  line-height: 44px;
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
-  color: #cbd5e1;
+  color: #94a3b8;
   scroll-snap-align: center;
   cursor: pointer;
+  user-select: none;
   transition: color 0.15s, font-size 0.15s;
 }
 
@@ -299,5 +321,5 @@
 }
 
 .bottom-sheet-footer {
-  margin-top: 16px;
+  margin-top: 20px;
 }
