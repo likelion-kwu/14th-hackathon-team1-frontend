@@ -44,6 +44,6 @@
   color: #1f2937;
 }
 
-.missed-call-content .common-btn {
-  width: 100%;
+.common-btn {
+  width: fit-content;
 }
