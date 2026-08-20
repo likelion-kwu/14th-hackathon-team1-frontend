@@ -8,10 +8,10 @@ import { Step3 } from "../features/onboarding/components/Step3";
 import { Step4 } from "../features/onboarding/components/Step4";
 import { Step5 } from "../features/onboarding/components/Step5";
 import { Step6 } from "../features/onboarding/components/Step6";
-import { createMember, updateFcmToken } from "../api/members";
-import { updateNotificationSetting } from "../api/members";
+// import { createMember, updateFcmToken } from "../api/members";
+import { createMember, updateNotificationSetting } from "../api/members";
 import { getMemberId, setMemberId } from "../utils/memberSession";
-import { requestNotificationPermission } from "../utils/browserPermissions";
+//import { requestNotificationPermission } from "../utils/browserPermissions";
 import { ApiError } from "../api/client";
 
 import Logo from '../assets/images/HEY_onboarding.png'
@@ -120,7 +120,7 @@ export const OnboardingPage = ({ onComplete }) => {
     setIsSubmitting(true);
     try {
       // 1. 브라우저 권한 요청 및 FCM 토큰 획득
-      const fcmToken = await requestNotificationPermission();
+      // const fcmToken = await requestNotificationPermission();
 
       // 2. 멤버 생성 및 localStorage 저장
       const member = await createMember({
@@ -130,10 +130,10 @@ export const OnboardingPage = ({ onComplete }) => {
       setMemberId(member.id);
 
       // 3. FCM 토큰 서버 등록 (토큰이 있는 경우)
-      if (fcmToken) {
-        const res = await updateFcmToken(member.id, fcmToken);
-        console.log('✅ FCM 토큰 등록 성공 응답:', res); // 추가된 확인 코드
-      }
+      // if (fcmToken) {
+      //   const res = await updateFcmToken(member.id, fcmToken);
+      //   console.log('✅ FCM 토큰 등록 성공 응답:', res); // 추가된 확인 코드
+      // }
 
       // 4. 알림 시간 설정이 있다면 업데이트
       if (formData.settings.startTime) {
