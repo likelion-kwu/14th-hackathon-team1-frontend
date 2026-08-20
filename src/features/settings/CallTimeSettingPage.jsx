@@ -175,7 +175,7 @@ export const CallTimeSettingPage = () => {
       alert('통화 시간 설정이 저장되었습니다.');
       navigate(-1);
     } catch (error) {
-      console.error('통화 시간 저장 실패:', error);
+      //console.error('통화 시간 저장 실패:', error);
       alert('저장 중 오류가 발생했습니다.');
     } finally {
       setIsSaving(false);

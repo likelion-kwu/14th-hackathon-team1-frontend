@@ -22,7 +22,7 @@ export const RecordDetailPage = () => {
       await confirmHealthRecord(record.recordId);
       setStatus('CONFIRMED');
     } catch (error) {
-      console.error('기록 확인 오류:', error);
+      //console.error('기록 확인 오류:', error);
       alert('확인 처리 중 오류가 발생했습니다.');
     } finally {
       setIsConfirming(false);

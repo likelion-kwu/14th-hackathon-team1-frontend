@@ -65,7 +65,7 @@ export const DataManagementPage = () => {
         // const json = await res.json();
         // setData(json);
       } catch (error) {
-        console.error('데이터 열람 정보 조회 실패:', error);
+        //console.error('데이터 열람 정보 조회 실패:', error);
       } finally {
         setIsLoading(false);
       }
@@ -84,7 +84,7 @@ export const DataManagementPage = () => {
 
     try {
       // TODO: 백엔드 API 연동 (POST /api/users/data/delete-request, { type: selectedTarget.id })
-      console.log('삭제 요청 전송 타입:', selectedTarget.id);
+      //console.log('삭제 요청 전송 타입:', selectedTarget.id);
 
       // 삭제 처리 현황에 신규 요청 추가
       const newStatus = {
@@ -103,7 +103,7 @@ export const DataManagementPage = () => {
       alert(`${selectedTarget.title} 삭제 요청이 정상적으로 접수되었습니다.`);
       setSelectedTarget(null);
     } catch (error) {
-      console.error('삭제 요청 접수 오류:', error);
+      //console.error('삭제 요청 접수 오류:', error);
       alert('삭제 요청 처리 중 문제가 발생했습니다.');
     }
   };

@@ -38,7 +38,7 @@ export const RecordPage = () => {
     getTodayHealthRecords(memberId)
       .then((data) => setRecords(data))
       .catch((error) => {
-        console.error('오늘의 건강 기록 조회 오류', error);
+        //console.error('오늘의 건강 기록 조회 오류', error);
         setLoadError('건강 기록을 불러오지 못했어요.');
       })
       .finally(() => setIsLoading(false));

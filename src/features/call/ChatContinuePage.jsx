@@ -52,7 +52,7 @@ export const ChatContinuePage = () => {
           .filter((message) => message.role === 'USER' || message.role === 'ASSISTANT')
           .map(toChatMessage));
       } catch (error) {
-        console.error('대화 불러오기 오류', error);
+        //console.error('대화 불러오기 오류', error);
         if (isMounted) {
           setErrorMessage('대화를 불러오지 못했어요. 잠시 후 다시 시도해주세요.');
         }
@@ -82,7 +82,7 @@ export const ChatContinuePage = () => {
       ]);
       setDraft('');
     } catch (error) {
-      console.error('메시지 전송 오류', error);
+      //console.error('메시지 전송 오류', error);
       setErrorMessage('메시지를 보내지 못했어요. 네트워크 상태를 확인하고 다시 시도해주세요.');
     } finally {
       setIsSending(false);
@@ -98,7 +98,7 @@ export const ChatContinuePage = () => {
       await completeConversation(conversationId);
       navigate('/record');
     } catch (error) {
-      console.error('대화 종료 오류', error);
+      //console.error('대화 종료 오류', error);
       setErrorMessage('대화를 종료하지 못했어요. 잠시 후 다시 시도해주세요.');
     } finally {
       setIsCompleting(false);

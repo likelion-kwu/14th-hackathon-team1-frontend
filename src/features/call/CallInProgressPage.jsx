@@ -84,7 +84,7 @@ export const CallInProgressPage = () => {
         const text = result[0].transcript;
         if (result.isFinal) {
           finalTranscript += text;
-          console.log('[음성 인식 - 최종]', text);
+          // console.log('[음성 인식 - 최종]', text);
         } else {
           interim += text;
         }
@@ -93,7 +93,7 @@ export const CallInProgressPage = () => {
     };
 
     recognition.onerror = (event) => {
-      console.error('[음성 인식 오류]', event.error);
+      //console.error('[음성 인식 오류]', event.error);
     };
 
     recognition.onend = async () => {
@@ -123,7 +123,7 @@ export const CallInProgressPage = () => {
       ]);
       speak(result.assistantMessage.content, () => listenForAnswer());
     } catch (error) {
-      console.error('메시지 전송 오류', error);
+      //console.error('메시지 전송 오류', error);
       setErrorMessage('AI 응답을 받아오지 못했어요. 네트워크 상태를 확인하고 다시 시도해주세요.');
       setCallStatus('error');
     }
@@ -163,7 +163,7 @@ export const CallInProgressPage = () => {
       setQnaLog(transcript);
       speak(opening, () => listenForAnswer());
     } catch (error) {
-      console.error('대화 시작 오류', error);
+      //console.error('대화 시작 오류', error);
       if (error instanceof ApiError && error.code === 'NOT_FOUND') {
         setErrorMessage('회원 정보를 찾을 수 없어요. 온보딩을 다시 진행해주세요.');
       } else {
@@ -182,7 +182,7 @@ export const CallInProgressPage = () => {
       try {
         await completeConversation(conversationRef.current.id);
       } catch (error) {
-        console.error('통화 종료 처리 오류', error);
+        //console.error('통화 종료 처리 오류', error);
       }
     }
     setCallStatus('completed');

@@ -69,7 +69,7 @@ export const FeedbackDetail = ({ feedbackData: initialData }) => {
         // setData(json);
         setData(DEFAULT_FEEDBACK_DATA);
       } catch (error) {
-        console.error('피드백 조회 에러:', error);
+        //console.error('피드백 조회 에러:', error);
       } finally {
         setIsLoading(false);
       }

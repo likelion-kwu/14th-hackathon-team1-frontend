@@ -38,7 +38,7 @@ export const InviteFriendPage = () => {
   const previewLabels = checkedItems.map((id) => SHARE_ITEM_LABELS[id]).join(', ') || '선택된 항목 없음';
 
   const handleSendInvite = () => {
-    console.log('초대 전송', { contact, checkedItems });
+    //console.log('초대 전송', { contact, checkedItems });
     alert('초대를 보냈어요.');
     navigate('/streak');
   };

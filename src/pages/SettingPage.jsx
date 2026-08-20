@@ -66,7 +66,7 @@ export const SettingPage = ({ userData }) => {
     try {
       await updateNotificationSetting(memberId, { notifyTime, notifyEnabled: nextState });
     } catch (error) {
-      console.error('알림 설정 변경 오류:', error);
+      //console.error('알림 설정 변경 오류:', error);
       setSettings((prev) => ({ ...prev, isCallReceptionActive: !nextState }));
     }
   };
@@ -75,11 +75,11 @@ export const SettingPage = ({ userData }) => {
   const handleConfirmWithdraw = async () => {
     try {
       // TODO: 백엔드 API 연동 (POST /api/users/consent/withdraw)
-      console.log('동의 철회 요청 전송');
+      //console.log('동의 철회 요청 전송');
       alert('동의 철회 요청이 정상적으로 접수되었습니다.');
       setIsWithdrawModalOpen(false);
     } catch (error) {
-      console.error('동의 철회 요청 오류:', error);
+      //console.error('동의 철회 요청 오류:', error);
       alert('요청 처리 중 오류가 발생했습니다.');
     }
   };
@@ -98,7 +98,7 @@ export const SettingPage = ({ userData }) => {
       alert('AI 전화 수신이 중단되었습니다.');
       setIsStopCallModalOpen(false);
     } catch (error) {
-      console.error('수신 중단 처리 오류:', error);
+      //console.error('수신 중단 처리 오류:', error);
       alert('처리 중 오류가 발생했습니다.');
     }
   };

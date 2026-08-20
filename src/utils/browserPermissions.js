@@ -20,7 +20,7 @@ export const requestMicrophonePermission = async () => {
     stream.getTracks().forEach((track) => track.stop());
     return true;
   } catch (error) {
-    console.error('마이크 권한 요청 실패:', error);
+    //console.error('마이크 권한 요청 실패:', error);
     return false;
   }
 };
