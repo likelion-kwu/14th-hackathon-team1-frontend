@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Header } from "../components/common/Header";
@@ -13,11 +13,33 @@ import { updateNotificationSetting } from "../api/members";
 import { setMemberId } from "../utils/memberSession";
 import { ApiError } from "../api/client";
 
+import Logo from '../assets/images/HEY_onboarding.png'
+
 import './OnboardingPage.css'
 
 export const OnboardingPage = ({ onComplete }) => { 
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1); // 현재 온보딩 페이지
+
+  const [isSplash, setIsSplash] = useState(true);
+  const [isFadingOut, setIsFadingOut] = useState(false);
+
+  useEffect(() => {
+    // 1.5초(1500ms) 후 페이드아웃 애니메이션 시작
+    const fadeTimer = setTimeout(() => {
+      setIsFadingOut(true);
+    }, 1500);
+
+    // 2.0초(2000ms) 후 스플래시 DOM 완전히 제거
+    const removeTimer = setTimeout(() => {
+      setIsSplash(false);
+    }, 2000);
+
+    return () => {
+      clearTimeout(fadeTimer);
+      clearTimeout(removeTimer);
+    };
+  }, []);
 
   const [formData, setFormData] = useState({
     nickname: '',
@@ -118,6 +140,12 @@ export const OnboardingPage = ({ onComplete }) => {
 
   return (
     <div className="onboarding-container">
+      {isSplash && (
+        <div className={`splash-overlay ${isFadingOut ? 'fade-out' : ''}`}>
+          <img src={Logo} alt="HEY" className="splash-logo-img" />
+        </div>
+      )}
+
       <Header
         title={headerTitles[currentStep]}
         onBack={handlePrevStep}

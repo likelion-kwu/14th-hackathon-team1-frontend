@@ -57,7 +57,6 @@ export const Step3 = ({ phoneNumber, onChangePhone, nickname, onChangeNickname, 
             value={nickname}
             onChange={(e) => onChangeNickname(e.target.value)}
             maxLength={50}
-            placeholder="AI가 부를 이름을 입력해주세요"
           />
         </div>
 

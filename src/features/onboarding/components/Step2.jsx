@@ -11,7 +11,7 @@ export const Step2 = ({ onNext }) => {
     <div className="step2-container">
       {/* 1. 메인 헤더 타이틀 */}
       <div className="step2-title-group">
-        <h2 className="step2-main-title">안부가 처음이신가요?</h2>
+        <h2 className="step2-main-title"><span style={{'color': '#7CE5FA'}}>HEY</span>가 처음이신가요?</h2>
         <p className="step2-sub-title">대화만 해도 건강이 기록됩니다</p>
       </div>
 
@@ -70,7 +70,7 @@ export const Step2 = ({ onNext }) => {
         <div className="warning-content">
           <span className="warning-icon"></span>
           <h4 className="warning-title">⚠️ 의료 진단 서비스가 아닙니다</h4>
-          <p className="warning-desc">
+          <p className="warning-desc1">
             안부는 건강 우려를 진단하거나 치료를 처방하지 않아요. <br/>걱정되는 증상이 있다면 반드시 의료 전문가와 상담하세요.
           </p>
         </div>

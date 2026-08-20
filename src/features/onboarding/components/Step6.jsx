@@ -205,7 +205,7 @@ export const Step6 = ({
       {/* 7. 하단 제출 버튼 세트 */}
       <div className="step6-footer">
         <Button onClick={onSubmit}>
-          설정 완료, 시작하기
+          시작하기
         </Button>
         <button type="button" className="text-link-btn" onClick={onBack}>
           이전 단계로 돌아가기
