@@ -109,7 +109,7 @@ export const HomePage = () => {
     <div className="home-page-container">
       <main className="home-page-content">
         <h2 className="home-greeting-title">
-          안녕하세요, {member.nickname}님. 오늘은 어떻게 지내고 계신가요?
+          안녕하세요, {member.nickname}님. <br/>오늘은 어떻게 지내고 계신가요?
         </h2>
 
         <section className="dashboard-card status-card">

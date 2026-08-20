@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/common/Button';
 import './CallPage.css';
+import { getMemberId } from '../utils/memberSession';
+import { getMember } from '../api/members';
+import { maskPhoneNumber } from '../utils/format';
 
 /* 백엔드 API 미연결 시 사용할 임시 데이터 */
 const DEFAULT_CALL_SETTINGS = {
@@ -23,12 +26,31 @@ export const CallPage = ({ callSettings: initialSettings }) => {
   const [settings, setSettings] = useState(initialSettings || DEFAULT_CALL_SETTINGS);
 
   useEffect(() => {
-    if (initialSettings) return; // 이미 초기 state로 반영됨
+    if (initialSettings) return;
 
-    const fetchCallSettings = async () => {
-      setSettings(DEFAULT_CALL_SETTINGS);
+    const fetchMemberData = async () => {
+      const memberId = getMemberId();
+      if (!memberId) return;
+
+      try {
+        const response = await getMember(memberId);
+        const memberData = response?.data || response;
+
+        if (memberData) {
+          setSettings((prev) => ({
+            ...prev,
+            phoneNumber: memberData.phone
+              ? `${maskPhoneNumber(memberData.phone)} (인증 완료)`
+              : prev.phoneNumber,
+            timeRange: memberData.notifyTime || prev.timeRange
+          }));
+        }
+      } catch (error) {
+        console.error('회원 정보 불러오기 실패:', error);
+      }
     };
-    fetchCallSettings();
+
+    fetchMemberData();
   }, [initialSettings]);
 
   const activeCategories = Object.keys(settings.categories).filter(
