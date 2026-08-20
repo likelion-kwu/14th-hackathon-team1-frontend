@@ -23,6 +23,7 @@ import { ChatContinuePage } from './features/call/ChatContinuePage';
 import { StreakDetailPage } from './features/streak/StreakDetailPage';
 import { InviteFriendPage } from './features/streak/InviteFriendPage';
 import { FriendShareSettingsPage } from './features/streak/FriendShareSettingsPage';
+import { ConnectedFriendsPage } from './features/streak/ConnectedFriendsPage';
 import { getMemberId } from './utils/memberSession';
 
 function App() {
@@ -88,6 +89,7 @@ function App() {
         <Route path='streak/detail' element={<StreakDetailPage/>} />
         <Route path='streak/invite' element={<InviteFriendPage/>} />
         <Route path='streak/share-settings' element={<FriendShareSettingsPage/>} />
+        <Route path='streak/friends' element={<ConnectedFriendsPage/>} />
       </Route>
 
       {/* 기타 잘못된 접근 시 홈으로 이동 */}

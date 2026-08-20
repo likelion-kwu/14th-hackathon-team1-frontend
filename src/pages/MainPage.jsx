@@ -23,6 +23,7 @@ const PATH_TITLES = {
   '/streak/detail': '응답 스트릭 현황',
   '/streak/invite': '친구 초대',
   '/streak/share-settings': '친구 안부 공유 설정',
+  '/streak/friends': '연결된 친구',
   '/settings': '설정 및 데이터 관리',
   '/settings/call-time': '통화 시간 변경',
   '/settings/phone': '전화번호 변경',
@@ -36,7 +37,7 @@ const SHOW_BACK_PATHS = [
   '/record/list', '/record/detail',
   '/settings/call-time', '/settings/phone', '/settings/data-management', '/settings/privacy-policy',
   '/call/in-progress', '/call/missed', '/call/chat',
-  '/streak/detail', '/streak/invite', '/streak/share-settings'
+  '/streak/detail', '/streak/invite', '/streak/share-settings', '/streak/friends'
 ];
 
 export const MainPage = ({ userData, onUpdateUserData }) => {
