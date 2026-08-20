@@ -5,6 +5,7 @@ import { getMessages, startConversation, sendMessage, completeConversation } fro
 import { getMemberId } from '../../utils/memberSession';
 import { requestMicrophonePermission } from '../../utils/browserPermissions';
 import { ApiError } from '../../api/client';
+import logo from '../../assets/images/HEY_onboarding.png'
 import './CallInProgressPage.css';
 
 // 브라우저 음성 인식 API (Chrome/Edge는 webkit 접두사, 미지원 브라우저는 null)
@@ -203,7 +204,9 @@ export const CallInProgressPage = () => {
   return (
     <div className="in-call-content">
       <div className="in-call-profile">
-        <div className={`in-call-avatar ${callStatus === 'listening' ? 'in-call-avatar-active' : ''}`}>Aa</div>
+        <div className={`in-call-avatar ${callStatus === 'listening' ? 'in-call-avatar-active' : ''}`}>
+          <img className='hey-icon' src={logo}/>
+        </div>
         <p className="in-call-name">AI 안부</p>
         <p className="in-call-status">{statusLabel}</p>
       </div>

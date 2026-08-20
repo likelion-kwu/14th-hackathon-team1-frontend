@@ -22,14 +22,19 @@
   width: 72px;
   height: 72px;
   border-radius: 999px;
-  background-color: #d1d5db;
+  background-color: #ffffff;
+  border: 1px solid #74E8FF;
   color: #ffffff;
   font-size: 11px;
 }
 
 .in-call-avatar-active {
-  background-color: #1f2937;
+  background-color: #ffffff;
   animation: in-call-pulse 1.2s ease-in-out infinite;
+}
+
+.hey-icon {
+  width: 100%;
 }
 
 @keyframes in-call-pulse {

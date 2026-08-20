@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '../../components/common/Button';
+import logo from '../../assets/images/HEY_onboarding.png'
 import './FriendShareSettingsPage.css';
 
 const SHARE_ITEM_OPTIONS = [
@@ -91,7 +92,9 @@ export const FriendShareSettingsPage = () => {
       <p className="friend-share-section-title">연결된 친구</p>
       <div className="friend-share-card">
         <div className="friend-share-row">
-          <div className="friend-share-avatar">Aa</div>
+          <div className="friend-share-avatar">
+            <img className='hey-icon' src={logo}/>
+          </div>
           <div className="friend-share-text">
             <span className="friend-share-name">{friendName}</span>
             <span className="friend-share-status">{shareActive ? '공유 중' : '공유 중단'}</span>

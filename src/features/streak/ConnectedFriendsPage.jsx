@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import logo from '../../assets/images/HEY_onboarding.png'
 import './ConnectedFriendsPage.css';
 
 /* 백엔드 API 미연결 시 사용할 임시 데이터 */
@@ -21,7 +22,9 @@ export const ConnectedFriendsPage = () => {
       {DEFAULT_FRIENDS.map((friend) => (
         <div key={friend.name} className="connected-friend-card">
           <div className="connected-friend-row">
-            <div className="connected-friend-avatar">Aa</div>
+            <div className="connected-friend-avatar">
+              <img className='hey-icon' src={logo}/>
+            </div>
             <div className="connected-friend-text">
               <span className="connected-friend-name">{friend.name}</span>
               {friend.activity && <span className="connected-friend-activity">{friend.activity}</span>}
