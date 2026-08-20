@@ -1,4 +1,4 @@
-export const API_BASE_URL = 'http://52.79.79.220:8080';
+export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
 
 
  // 백엔드 공통 실패 응답을 담는 에러 객체
