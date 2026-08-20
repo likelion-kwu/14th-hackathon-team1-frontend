@@ -94,13 +94,15 @@
   color: #1F2937;
 }
 
-.resend-btn {
-  border-color: #1F2937;
-}
-
 /* 3. 하단 버튼 영역 */
 .step4-footer {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 100%;
+  align-items: stretch;
+}
+
+.verify-btn {
+  width: 100% !important;
 }

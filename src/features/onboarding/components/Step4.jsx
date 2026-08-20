@@ -106,10 +106,10 @@ export const Step4 = ({
 
         {/* 4. 하단 버튼 영역 */}
         <div className="step4-footer">
-          <Button type="submit" disabled={!isCodeValid}>
+          <Button className='verify-btn' type="submit" disabled={!isCodeValid}>
             인증 완료
           </Button>
-          <Button variant="white" onClick={onBackToPhone}>
+          <Button className='verify-btn' variant="white" onClick={onBackToPhone}>
             번호 변경
           </Button>
         </div>

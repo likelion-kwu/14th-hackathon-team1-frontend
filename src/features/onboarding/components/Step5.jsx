@@ -175,7 +175,7 @@ export const Step5 = ({
 
       {/* 5. 하단 버튼 영역 */}
       <div className="step5-footer">
-        <Button onClick={handleAllAgree}>
+        <Button className='step5-btn' onClick={handleAllAgree}>
           모두 동의하고 시작하기
         </Button>
 

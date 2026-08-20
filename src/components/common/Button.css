@@ -7,6 +7,7 @@
   border-radius: 6px;
   font-size: 14px;
   font-weight: 500;
+  width: 100%;
   outline: none;
   cursor: pointer;
   transition: all 0.15s ease-in-out;
@@ -14,11 +15,11 @@
 }
 
 .btn-full {
-  width: 100%;
+  width: 100% !important;
 }
 
 .btn-auto {
-  width: auto;
+  width: fit-content;
 }
 
 /* 검정색 버튼 */

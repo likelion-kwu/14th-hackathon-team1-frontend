@@ -75,5 +75,5 @@
 }
 
 .streak-invite-btn {
-  width: fit-content;
+  width: fit-content !important;
 }

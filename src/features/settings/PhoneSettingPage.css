@@ -92,7 +92,7 @@
 }
 
 .btn-change-inline {
-  width: fit-content;
+  width: fit-content !important;
 }
 
 .btn-change-inline:hover {
@@ -142,7 +142,7 @@
 }
 
 .btn-request-code {
-  width: fit-content;
+  width: fit-content !important;
   margin-left: auto;
 }
 
@@ -182,7 +182,7 @@
 
 /* 인증 확인 버튼 */
 .btn-verify-submit {
-  width: fit-content;
+  width: fit-content !important;
   margin-top: 10px;
   transition: all 0.15s ease;
 }
