@@ -103,6 +103,20 @@
   color: #1f2937;
 }
 
+.chat-status-message,
+.chat-error-message {
+  margin: 0;
+  font-size: 12px;
+}
+
+.chat-status-message {
+  color: #6b7280;
+}
+
+.chat-error-message {
+  color: #b91c1c;
+}
+
 .chat-input-group {
   display: flex;
   flex-direction: column;
