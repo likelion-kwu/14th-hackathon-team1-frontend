@@ -10,8 +10,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['icons/favicon.png', 'icons.svg'],
       manifest: {
-        name: '웰콜 - AI 안부 전화',
-        short_name: '웰콜',
+        name: 'HEY - AI 안부 전화',
+        short_name: 'HEY',
         description: 'AI가 정기적으로 안부 전화를 걸어 건강 기록을 자동으로 남겨주는 서비스',
         start_url: '/',
         scope: '/',
