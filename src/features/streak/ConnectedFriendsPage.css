@@ -1,0 +1,80 @@
+.connected-friends-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.connected-friends-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.connected-friend-card {
+  width: 100%;
+  padding: 12px;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.connected-friend-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.connected-friend-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  background-color: #d1d5db;
+  color: #ffffff;
+  font-size: 11px;
+}
+
+.connected-friend-text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.connected-friend-name {
+  font-size: 12px;
+  color: #1f2937;
+}
+
+.connected-friend-activity {
+  font-size: 11px;
+  color: #6b7280;
+}
+
+.connected-friend-view-btn {
+  flex-shrink: 0;
+  padding: 8px 16px;
+  min-width: 60px;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1f2937;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.connected-friend-view-btn:hover {
+  background-color: #f3f4f6;
+}
