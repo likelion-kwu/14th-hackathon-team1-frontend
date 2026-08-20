@@ -26,10 +26,11 @@ import { FriendShareSettingsPage } from './features/streak/FriendShareSettingsPa
 import { getMemberId } from './utils/memberSession';
 
 function App() {
+  const [isOnboardingCompleted, setIsOnboardingCompleted] = useState(false);
   // localStorage에 memberId가 존재하면 초기 상태를 true로 설정
-  const [isOnboardingCompleted, setIsOnboardingCompleted] = useState(() => {
-    return !!getMemberId();
-  });
+  // const [isOnboardingCompleted, setIsOnboardingCompleted] = useState(() => {
+  //   return !!getMemberId();
+  // });
 
   const [userProfile, setUserProfile] = useState(null);
 
@@ -48,13 +49,7 @@ function App() {
       {/* 온보딩 페이지: 이미 가입된 상태라면 홈(/)으로 리다이렉트 */}
       <Route
         path="/onboarding"
-        element={
-          isOnboardingCompleted ? (
-            <Navigate to="/" replace />
-          ) : (
-            <OnboardingPage onComplete={handleOnboardingComplete} />
-          )
-        }
+        element={<OnboardingPage onComplete={handleOnboardingComplete} />}
       />
 
       {/* 대시보드 공통 레이아웃: 미가입 상태라면 /onboarding으로 리다이렉트 */}
