@@ -7,14 +7,16 @@ import './Step5.css';
  * @param {Object} props.agreements - 동의 항목별 boolean 상태 객체
  * @param {Function} props.onChangeAgreements - 동의 항목 변경 핸들러
  * @param {Function} props.onNext - [통화 설정으로 이동] 버튼 클릭 시 Step 6으로 이동
- * @param {Function} props.onSkipToHome - [홈_대시보드로 이동] 클릭 시 바로 메인 화면 이동
+ * @param {Function} props.onSkipToHome - [홈_대시보드로 이동] 클릭 시 회원 생성 후 메인 화면 이동
+ * @param {boolean} props.isSubmitting - 회원 생성 요청 진행 여부
  */
 
 export const Step5 = ({
   agreements,
   onChangeAgreements,
   onNext,
-  onSkipToHome
+  onSkipToHome,
+  isSubmitting = false
 }) => {
   // 개별 체크박스 토글
   const handleToggle = (key) => {
@@ -175,15 +177,15 @@ export const Step5 = ({
 
       {/* 5. 하단 버튼 영역 */}
       <div className="step5-footer">
-        <Button className='step5-btn' onClick={handleAllAgree}>
+        <Button className='step5-btn' onClick={handleAllAgree} disabled={isSubmitting}>
           모두 동의하고 시작하기
         </Button>
 
-        <Button variant="white" onClick={onNext} disabled={!isRequiredAgreed}>
+        <Button variant="white" onClick={onNext} disabled={!isRequiredAgreed || isSubmitting}>
           통화 설정으로 이동
         </Button>
 
-        <button type="button" className="text-link-btn" onClick={onSkipToHome}>
+        <button type="button" className="text-link-btn" onClick={onSkipToHome} disabled={isSubmitting}>
           홈 대시보드로 이동
         </button>
       </div>

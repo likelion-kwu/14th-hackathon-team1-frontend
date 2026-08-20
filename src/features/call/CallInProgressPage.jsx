@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '../../components/common/Button';
 import { getMessages, startConversation, sendMessage, completeConversation } from '../../api/conversations';
 import { getMemberId } from '../../utils/memberSession';
+import { requestMicrophonePermission } from '../../utils/browserPermissions';
 import { ApiError } from '../../api/client';
 import './CallInProgressPage.css';
 
@@ -131,6 +132,12 @@ export const CallInProgressPage = () => {
     const memberId = getMemberId();
     if (!memberId) {
       setErrorMessage('먼저 온보딩(회원가입)을 완료해야 통화를 시작할 수 있어요.');
+      setCallStatus('error');
+      return;
+    }
+
+    if (SpeechRecognitionAPI && !(await requestMicrophonePermission())) {
+      setErrorMessage('마이크 권한을 허용해야 음성 통화를 시작할 수 있어요. 브라우저 설정에서 마이크를 허용한 뒤 다시 시도해주세요.');
       setCallStatus('error');
       return;
     }
