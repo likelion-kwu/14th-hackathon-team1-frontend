@@ -108,6 +108,7 @@ export const PhoneSettingPage = () => {
             </div>
             <Button
                 variant='white'
+                className='btn-change-inline'
                 onClick={() => document.getElementById('newPhoneInput')?.focus()}
             >
               변경

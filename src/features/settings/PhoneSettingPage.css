@@ -91,6 +91,9 @@
   color: #64748b;
 }
 
+.btn-change-inline {
+  width: fit-content;
+}
 
 .btn-change-inline:hover {
   background-color: #f8fafc;
@@ -139,6 +142,7 @@
 }
 
 .btn-request-code {
+  width: fit-content;
   margin-left: auto;
 }
 
@@ -178,6 +182,7 @@
 
 /* 인증 확인 버튼 */
 .btn-verify-submit {
+  width: fit-content;
   margin-top: 10px;
   transition: all 0.15s ease;
 }
@@ -215,7 +220,7 @@
 .phone-page-actions {
   display: flex;
   justify-content: space-between;
-  padding-bottom: 12px;
+  gap: 12px;
 }
 
 .btn-action-cancel:hover {
