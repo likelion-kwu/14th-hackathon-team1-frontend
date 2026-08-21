@@ -84,7 +84,7 @@ export const CallInProgressPage = () => {
         const text = result[0].transcript;
         if (result.isFinal) {
           finalTranscript += text;
-          // console.log('[음성 인식 - 최종]', text);
+          console.log('[음성 인식 - 최종]', text);
         } else {
           interim += text;
         }
@@ -93,7 +93,7 @@ export const CallInProgressPage = () => {
     };
 
     recognition.onerror = (event) => {
-      //console.error('[음성 인식 오류]', event.error);
+      console.error('[음성 인식 오류]', event.error);
     };
 
     recognition.onend = async () => {
